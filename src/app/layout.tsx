@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
+
+const vonique43 = localFont({
+  src: "./fonts/Vonique43.otf",
+  variable: "--font-vonique",
+  display: "swap",
+});
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-sans",
@@ -13,6 +20,9 @@ export const metadata: Metadata = {
   title: "piwva — Care for Every Little Moment | Gentle Baby Care",
   description:
     "Pure, safe and thoughtful care products for your newborn and growing baby. Introducing piwva Baby Moisture Lotion.",
+  icons: {
+    icon: "/images/logo.png",
+  },
   keywords: [
     "piwva",
     "baby care",
@@ -29,7 +39,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${plusJakartaSans.variable} scroll-smooth`}>
+    <html
+      lang="en"
+      className={`${vonique43.variable} ${plusJakartaSans.variable} scroll-smooth`}
+    >
       <body className="min-h-screen bg-[#FAF7F2] text-[#1A3B22] font-sans antialiased selection:bg-[#4D6D2E] selection:text-white">
         {children}
       </body>

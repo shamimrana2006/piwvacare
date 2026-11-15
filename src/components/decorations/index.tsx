@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 export function DoodleHeart({
   className = "w-6 h-6 text-[#588040]",
@@ -71,33 +72,22 @@ export function WavyUnderline({
 }
 
 export function BrandLogo({
-  className = "h-8",
-  textColor = "text-[#1A3B22]",
-  dotColor = "text-[#4D6D2E]",
+  className = "h-8 sm:h-9",
+  variant = "original",
 }: {
   className?: string;
-  textColor?: string;
-  dotColor?: string;
+  variant?: "original" | "forest";
 }) {
   return (
-    <div className={`flex items-center gap-1.5 font-bold tracking-tight select-none ${className}`}>
-      <span className={`text-2xl sm:text-3xl font-extrabold tracking-tight ${textColor} relative flex items-center`}>
-        p
-        {/* 'i' with leaf sprout dot */}
-        <span className="relative inline-flex items-center justify-center">
-          <span className="inline-block">i</span>
-          <span className={`absolute -top-2 left-1/2 -translate-x-1/2 ${dotColor}`}>
-            <svg
-              className="w-3 h-3 fill-current rotate-12"
-              viewBox="0 0 24 24"
-            >
-              <path d="M12 2C7.5 2 3.5 5.5 3 10c2.5-.5 5.5 0 7.5 2 2 2 2.5 5 2 7.5 4.5-.5 8-4.5 8-9 0-4.5-3.5-8.5-8.5-8.5z" />
-            </svg>
-          </span>
-        </span>
-        wva
-      </span>
+    <div className={`relative flex items-center select-none ${className}`}>
+      <Image
+        src={variant === "forest" ? "/images/logo-forest.png" : "/images/logo.png"}
+        alt="piwva logo"
+        width={130}
+        height={36}
+        priority
+        className="w-auto h-7 sm:h-8.5 object-contain"
+      />
     </div>
   );
 }
-
