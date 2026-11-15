@@ -1,26 +1,85 @@
 @import "tailwindcss";
 
+@theme {
+  --color-brand-cream: #FAF7F2;
+  --color-brand-cream-warm: #F4EFE6;
+  --color-brand-cream-card: #FFFFFF;
+  --color-brand-dark: #1A3B22;
+  --color-brand-primary: #4D6D2E;
+  --color-brand-primary-hover: #3E5823;
+  --color-brand-sage: #E5EEDD;
+  --color-brand-sage-light: #F0F6EB;
+  --color-brand-sage-border: #D5E2CC;
+  --color-brand-sage-dark: #355A26;
+  --color-brand-muted: #596D5C;
+  --color-brand-sand: #EFE9DC;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #FAF7F2;
+  --foreground: #1A3B22;
+  --primary: #4D6D2E;
+  --primary-foreground: #FFFFFF;
+  --muted: #596D5C;
+  --border: #E5EEDD;
+  --card: #FFFFFF;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #FAF7F2;
+  color: #1A3B22;
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+  selection-background-color: #4D6D2E;
+  selection-color: #ffffff;
+}
+
+/* Custom smooth transitions */
+* {
+  box-sizing: border-box;
+}
+
+/* Organic blob border radius helpers */
+.rounded-blob-hero {
+  border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+}
+
+.rounded-blob-product {
+  border-radius: 55% 45% 40% 60% / 60% 50% 50% 40%;
+}
+
+.rounded-blob-promise {
+  border-radius: 50% 50% 45% 55% / 55% 45% 55% 45%;
+}
+
+/* Gentle floating animation */
+@keyframes float-gentle {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(1deg);
+  }
+}
+
+.animate-float {
+  animation: float-gentle 5s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float-gentle 6s ease-in-out 2s infinite;
+}
+
+/* Pulsing heart pulse */
+@keyframes heart-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+.animate-pulse-subtle {
+  animation: heart-pulse 3s ease-in-out infinite;
 }
