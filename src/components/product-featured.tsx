@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { ArrowRight, Leaf, Droplets, ShieldCheck, Check, Sparkles, Heart } from "lucide-react";
+import { ArrowRight, Leaf, Droplets, ShieldCheck, Check, ShoppingBag, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
@@ -61,11 +61,6 @@ export function ProductFeatured({
                 <span className="text-xs sm:text-sm font-bold tracking-tight">Launch</span>
               </div>
 
-              {/* Sparkle icon near the New Launch badge */}
-              <div className="absolute -top-3 right-4 z-20">
-                <Sparkles className="w-5 h-5 text-[#88AC6E]" />
-              </div>
-
               {/* Main Product Photography */}
               <div className="relative w-full aspect-4/3 sm:aspect-1/1 rounded-[36px] overflow-hidden bg-white/40">
                 <Image
@@ -108,7 +103,7 @@ export function ProductFeatured({
                     </>
                   ) : (
                     <>
-                      <Sparkles className="w-3.5 h-3.5 text-[#4D6D2E]" /> + Add $24
+                      <ShoppingBag className="w-3.5 h-3.5 text-[#4D6D2E]" /> + Add $24
                     </>
                   )}
                 </Button>

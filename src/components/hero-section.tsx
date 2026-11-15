@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { ArrowRight, Heart, Sparkles, ShieldCheck, Check } from "lucide-react";
+import { ArrowRight, Heart, ShieldCheck, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
@@ -56,11 +56,6 @@ export function HeroSection({ onCtaClick }: HeroSectionProps) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           {/* Left Column: Hero Copy & CTA */}
           <div className="lg:col-span-6 space-y-6 lg:pr-6 relative">
-            {/* Sparkle badge */}
-            <div className="absolute -top-7 left-32 md:left-40 hidden sm:block">
-              <Sparkles className="w-5 h-5 text-[#88AC6E]" />
-            </div>
-
             {/* Pill Badge with Lucide Heart */}
             <div className="inline-flex items-center gap-2">
               <Badge

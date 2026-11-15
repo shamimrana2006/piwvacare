@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Leaf, Heart, Smile, ShieldCheck, Sparkles, Check } from "lucide-react";
+import { Leaf, Heart, Smile, ShieldCheck, Check } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { WavyUnderline } from "@/components/decorations";
 
@@ -102,11 +102,6 @@ export function FeaturesGrid() {
                   >
                     <IconComponent className="w-8 h-8 stroke-[2]" />
                   </div>
-
-                  {/* Little micro sparkle on hover */}
-                  {isHovered && (
-                    <Sparkles className="w-4 h-4 text-[#4D6D2E] absolute -top-1 -right-1 animate-spin-slow" />
-                  )}
                 </div>
 
                 {/* Title */}

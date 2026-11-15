@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Sparkles, Sun, Moon, Bath, Shield, CheckCircle2 } from "lucide-react";
+import { Clock, Sun, Moon, Bath, Shield, CheckCircle2 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 export function CareGuideSection() {
@@ -66,7 +66,7 @@ export function CareGuideSection() {
             variant="soft"
             className="bg-[#E7EFE3] text-[#345928] border border-[#D5E5CB] px-4 py-1.5 rounded-full text-xs font-semibold shadow-2xs"
           >
-            <Sparkles className="w-3.5 h-3.5 text-[#4D6D2E]" />
+            <Clock className="w-3.5 h-3.5 text-[#4D6D2E]" />
             Piwva Daily Rituals
           </Badge>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1B381E] tracking-tight">

@@ -8,7 +8,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { Search, Sparkles, ArrowRight } from "lucide-react";
+import { Search, TrendingUp, ArrowRight } from "lucide-react";
 
 interface SearchDialogProps {
   open: boolean;
@@ -55,7 +55,7 @@ export function SearchDialog({
 
         <div className="mt-4">
           <p className="text-xs font-semibold text-[#596D5C] uppercase tracking-wider mb-2 flex items-center gap-1.5">
-            <Sparkles className="w-3.5 h-3.5 text-[#4D6D2E]" />
+            <TrendingUp className="w-3.5 h-3.5 text-[#4D6D2E]" />
             Popular Searches
           </p>
           <div className="flex flex-wrap gap-2">

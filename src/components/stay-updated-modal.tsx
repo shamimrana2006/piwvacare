@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Bell, Sparkles, CheckCircle2 } from "lucide-react";
+import { Bell, CheckCircle2 } from "lucide-react";
 import confetti from "canvas-confetti";
 
 interface StayUpdatedModalProps {
@@ -112,7 +112,7 @@ export function StayUpdatedModal({ open, onOpenChange }: StayUpdatedModalProps) 
                   type="submit"
                   className="w-full h-12 bg-[#4D6D2E] hover:bg-[#3D5624] text-white font-semibold rounded-full flex items-center justify-center gap-2 text-base shadow-md shadow-[#4D6D2E]/20"
                 >
-                  <Sparkles className="w-4 h-4" />
+                  <Bell className="w-4 h-4" />
                   Keep Me Updated
                 </Button>
               </div>

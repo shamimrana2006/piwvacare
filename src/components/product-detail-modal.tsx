@@ -14,7 +14,7 @@ import {
   Leaf,
   Droplets,
   ShieldCheck,
-  Sparkles,
+  ShoppingBag,
   Heart,
   Check,
   Star,
@@ -184,7 +184,7 @@ export function ProductDetailModal({
               <div className="space-y-3 text-xs sm:text-sm text-[#596D5C]">
                 <div className="p-3 bg-white rounded-xl border border-[#E2EBDC] space-y-2">
                   <div className="font-bold text-[#1A3B22] text-xs flex items-center gap-1.5">
-                    <Sparkles className="w-3.5 h-3.5 text-[#4D6D2E]" /> Step 1: Warm in Hands
+                    <Droplets className="w-3.5 h-3.5 text-[#4D6D2E]" /> Step 1: Warm in Hands
                   </div>
                   <p className="text-xs text-[#596D5C]">
                     Dispense 1-2 gentle pumps into your clean palms. Rub hands together to warm the lotion to baby&apos;s body temperature.
@@ -217,7 +217,7 @@ export function ProductDetailModal({
                 }}
                 className="bg-[#4D6D2E] hover:bg-[#3D5724] text-white rounded-full px-7 h-12 text-sm font-semibold flex items-center gap-2 shadow-md shadow-[#4D6D2E]/20"
               >
-                <Sparkles className="w-4 h-4" />
+                <ShoppingBag className="w-4 h-4" />
                 Add to Bag
               </Button>
             </div>

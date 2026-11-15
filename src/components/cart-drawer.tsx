@@ -9,7 +9,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { ShoppingBag, Plus, Minus, Trash2, ShieldCheck, Sparkles, CheckCircle2 } from "lucide-react";
+import { ShoppingBag, Plus, Minus, Trash2, ShieldCheck, Truck, CheckCircle2 } from "lucide-react";
 import confetti from "canvas-confetti";
 
 interface CartDrawerProps {
@@ -109,8 +109,8 @@ export function CartDrawer({
               {/* Free shipping progress bar */}
               <div className="bg-white p-3 rounded-2xl border border-[#DFEBD9] shadow-2xs">
                 <div className="flex items-center justify-between text-xs mb-1.5 font-medium">
-                  <span className="text-[#365A29] flex items-center gap-1">
-                    <Sparkles className="w-3.5 h-3.5" />
+                  <span className="text-[#365A29] flex items-center gap-1.5">
+                    <Truck className="w-3.5 h-3.5" />
                     {diffToFree === 0
                       ? "You unlocked FREE Expedited Baby-Safe Delivery!"
                       : `Add $${diffToFree.toFixed(2)} more for FREE baby delivery`}

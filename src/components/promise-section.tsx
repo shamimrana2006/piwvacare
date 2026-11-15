@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { ArrowRight, HeartHandshake, ShieldCheck, Heart, Sparkles } from "lucide-react";
+import { ArrowRight, HeartHandshake, ShieldCheck, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
@@ -21,11 +21,6 @@ export function PromiseSection({ onJoinJourney }: PromiseSectionProps) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
           {/* Left Column: Baby Hands Photo with Organic Bean Shape */}
           <div className="lg:col-span-6 relative flex justify-center">
-            {/* Sparkle icon */}
-            <div className="absolute -top-6 left-12 z-20">
-              <Sparkles className="w-5 h-5 text-[#88AC6E]" />
-            </div>
-
             {/* Organic curved shape container */}
             <div className="relative w-full max-w-[460px] aspect-4/3 sm:aspect-5/4 rounded-[44px] sm:rounded-[60px] overflow-hidden shadow-xl shadow-[#2E4A25]/10 border-4 border-white/90 bg-[#F4EEE3]">
               <Image

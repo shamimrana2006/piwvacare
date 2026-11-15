@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Heart, Sparkles, Footprints, ArrowRight, CheckCircle2, Eye } from "lucide-react";
+import { Heart, Leaf, Footprints, ArrowRight, CheckCircle2, Eye } from "lucide-react";
 
 interface StoryShowcaseProps {
   onExplore: () => void;
@@ -107,7 +107,7 @@ export function StoryShowcase({ onExplore }: StoryShowcaseProps) {
 
                   {/* Top Badge */}
                   <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[11px] font-bold text-[#1A3B22] shadow-xs flex items-center gap-1.5">
-                    <Sparkles className="w-3 h-3 text-[#4D6D2E]" />
+                    <Leaf className="w-3 h-3 text-[#4D6D2E]" />
                     {item.badge}
                   </div>
 
@@ -166,7 +166,7 @@ export function StoryShowcase({ onExplore }: StoryShowcaseProps) {
             {/* Narrative text */}
             <div className="lg:col-span-6 space-y-4">
               <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#4D6D2E] bg-[#EBF3E7] px-3 py-1 rounded-full">
-                <Sparkles className="w-3.5 h-3.5" />
+                <Footprints className="w-3.5 h-3.5" />
                 {stories[activeStory].badge} Spotlight
               </div>
 
