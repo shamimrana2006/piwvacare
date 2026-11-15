@@ -51,9 +51,9 @@ export function FeaturesGrid() {
           <div className="inline-flex items-center">
             <Badge
               variant="soft"
-              className="bg-[#E7EFE3] text-[#345928] border border-[#D5E5CB] px-4 py-1.5 rounded-full text-xs font-semibold shadow-2xs"
+              className="bg-[#E7EFE3] text-[#345928] border border-[#D5E5CB] px-4 py-1.5 rounded-full text-xs font-semibold shadow-2xs flex items-center gap-1.5"
             >
-              <span className="text-xs">💚</span>
+              <Heart className="w-3.5 h-3.5 text-[#4D6D2E] fill-[#4D6D2E]/20" />
               Why Piwva?
             </Badge>
           </div>

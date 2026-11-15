@@ -5,7 +5,6 @@ import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Heart, Sparkles, Footprints, ArrowRight, CheckCircle2, Eye } from "lucide-react";
-import { DoodleHeart, DoodleSparkle } from "@/components/decorations";
 
 interface StoryShowcaseProps {
   onExplore: () => void;
@@ -180,7 +179,7 @@ export function StoryShowcase({ onExplore }: StoryShowcaseProps) {
               </p>
 
               <div className="p-3.5 rounded-2xl bg-[#FAF7F2] border border-[#E2EBDC] text-xs text-[#4E6152] flex items-center gap-3">
-                <DoodleHeart className="w-6 h-6 text-[#4D6D2E] shrink-0 stroke-[2.5]" />
+                <Heart className="w-4 h-4 text-[#4D6D2E] shrink-0 fill-[#4D6D2E]/20" />
                 <span>{stories[activeStory].details}</span>
               </div>
 

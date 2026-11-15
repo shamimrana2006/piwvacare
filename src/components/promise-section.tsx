@@ -2,10 +2,9 @@
 
 import React from "react";
 import Image from "next/image";
-import { ArrowRight, HeartHandshake, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowRight, HeartHandshake, ShieldCheck, Heart, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { DoodleHeart, DoodleSparkle } from "@/components/decorations";
 
 interface PromiseSectionProps {
   onJoinJourney: () => void;
@@ -22,9 +21,9 @@ export function PromiseSection({ onJoinJourney }: PromiseSectionProps) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
           {/* Left Column: Baby Hands Photo with Organic Bean Shape */}
           <div className="lg:col-span-6 relative flex justify-center">
-            {/* 3-stroke sparkle doodle above the image */}
+            {/* Sparkle icon */}
             <div className="absolute -top-6 left-12 z-20">
-              <DoodleSparkle className="w-8 h-8 text-[#88AC6E]" />
+              <Sparkles className="w-5 h-5 text-[#88AC6E]" />
             </div>
 
             {/* Organic curved shape container */}
@@ -41,9 +40,9 @@ export function PromiseSection({ onJoinJourney }: PromiseSectionProps) {
               <div className="absolute inset-0 bg-gradient-to-t from-[#FAF7F2]/30 via-transparent to-transparent pointer-events-none" />
             </div>
 
-            {/* Floating outline doodle heart at the bottom-right corner of image */}
-            <div className="absolute -bottom-4 right-10 sm:right-16 z-20">
-              <DoodleHeart className="w-10 h-10 sm:w-12 sm:h-12 text-[#4D6D2E] stroke-[2.6] -rotate-12 drop-shadow-xs" />
+            {/* Heart badge at the bottom-right corner of image */}
+            <div className="absolute -bottom-4 right-10 sm:right-16 z-20 w-11 h-11 rounded-full bg-white/95 backdrop-blur-md shadow-md border border-[#DCE8D5] flex items-center justify-center">
+              <Heart className="w-5 h-5 text-[#4D6D2E] stroke-[2.2] fill-[#4D6D2E]/20" />
             </div>
 
             {/* Soft decorative blur ring */}
@@ -56,9 +55,9 @@ export function PromiseSection({ onJoinJourney }: PromiseSectionProps) {
             <div className="inline-flex items-center">
               <Badge
                 variant="soft"
-                className="bg-[#E7EFE3] text-[#345928] border border-[#D5E5CB] px-4 py-1.5 rounded-full text-xs font-semibold shadow-2xs"
+                className="bg-[#E7EFE3] text-[#345928] border border-[#D5E5CB] px-4 py-1.5 rounded-full text-xs font-semibold shadow-2xs flex items-center gap-1.5"
               >
-                <span className="text-xs">💚</span>
+                <Heart className="w-3.5 h-3.5 text-[#4D6D2E] fill-[#4D6D2E]/20" />
                 Our Promise
               </Badge>
             </div>
@@ -76,7 +75,7 @@ export function PromiseSection({ onJoinJourney }: PromiseSectionProps) {
               </p>
             </div>
 
-            {/* 3 Value Pillars */}
+            {/* 2 Value Pillars */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-2">
               <div className="flex items-start gap-2.5 p-3 rounded-xl bg-white/60 border border-[#E3EDDD]">
                 <HeartHandshake className="w-5 h-5 text-[#4D6D2E] shrink-0 mt-0.5" />
@@ -113,4 +112,3 @@ export function PromiseSection({ onJoinJourney }: PromiseSectionProps) {
     </section>
   );
 }
-

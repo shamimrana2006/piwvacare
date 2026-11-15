@@ -2,10 +2,9 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { ArrowRight, Leaf, Droplets, ShieldCheck, Check, Sparkles } from "lucide-react";
+import { ArrowRight, Leaf, Droplets, ShieldCheck, Check, Sparkles, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { DoodleHeart, DoodleSparkle } from "@/components/decorations";
 
 interface ProductFeaturedProps {
   onKnowMore: () => void;
@@ -62,9 +61,9 @@ export function ProductFeatured({
                 <span className="text-xs sm:text-sm font-bold tracking-tight">Launch</span>
               </div>
 
-              {/* Sparkle doodle near the New Launch badge */}
+              {/* Sparkle icon near the New Launch badge */}
               <div className="absolute -top-3 right-4 z-20">
-                <DoodleSparkle className="w-8 h-8 text-[#88AC6E]" />
+                <Sparkles className="w-5 h-5 text-[#88AC6E]" />
               </div>
 
               {/* Main Product Photography */}
@@ -119,9 +118,9 @@ export function ProductFeatured({
 
           {/* Right Column: Introducing Info & Features */}
           <div className="lg:col-span-6 space-y-6 relative lg:pl-4">
-            {/* Floating outline doodle heart on right edge */}
+            {/* Floating subtle vector heart on right edge */}
             <div className="absolute top-1/2 -right-2 sm:-right-8 -translate-y-1/2 pointer-events-none hidden md:block">
-              <DoodleHeart className="w-12 h-12 text-[#99B985] stroke-[2.2] opacity-70 rotate-12" />
+              <Heart className="w-8 h-8 text-[#4D6D2E]/25 stroke-[1.8] rotate-12" />
             </div>
 
             {/* Pill Badge */}

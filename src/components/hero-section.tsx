@@ -2,10 +2,9 @@
 
 import React from "react";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Heart, Sparkles, ShieldCheck, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { DoodleHeart, DoodleSparkle } from "@/components/decorations";
 
 interface HeroSectionProps {
   onCtaClick: () => void;
@@ -57,18 +56,18 @@ export function HeroSection({ onCtaClick }: HeroSectionProps) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           {/* Left Column: Hero Copy & CTA */}
           <div className="lg:col-span-6 space-y-6 lg:pr-6 relative">
-            {/* 3-stroke sunburst doodle */}
+            {/* Sparkle badge */}
             <div className="absolute -top-7 left-32 md:left-40 hidden sm:block">
-              <DoodleSparkle className="w-8 h-8 text-[#A8C793]" />
+              <Sparkles className="w-5 h-5 text-[#88AC6E]" />
             </div>
 
-            {/* Pill Badge */}
+            {/* Pill Badge with Lucide Heart */}
             <div className="inline-flex items-center gap-2">
               <Badge
                 variant="soft"
-                className="bg-[#E7EFE3] text-[#345928] border border-[#D5E5CB] px-4 py-1.5 rounded-full text-xs font-semibold shadow-2xs"
+                className="bg-[#E7EFE3] text-[#345928] border border-[#D5E5CB] px-4 py-1.5 rounded-full text-xs font-semibold shadow-2xs flex items-center gap-1.5"
               >
-                <span className="text-sm">💚</span>
+                <Heart className="w-3.5 h-3.5 text-[#4D6D2E] fill-[#4D6D2E]" />
                 Gentle Care. Happier Baby.
               </Badge>
             </div>
@@ -80,7 +79,7 @@ export function HeroSection({ onCtaClick }: HeroSectionProps) {
                 <span className="block text-[#273D2A] font-extrabold">Care for Every</span>
                 <span className="inline-flex items-center flex-wrap gap-2 text-[#273D2A]">
                   <span>Little Moment</span>
-                  <DoodleHeart className="w-8 h-8 sm:w-10 sm:h-10 text-[#4D6D2E] inline-block animate-pulse-subtle stroke-[3]" />
+                  <Heart className="w-7 h-7 sm:w-8 sm:h-8 text-[#4D6D2E] inline-block stroke-[2.2] fill-none" />
                 </span>
               </h1>
             </div>
@@ -107,22 +106,22 @@ export function HeroSection({ onCtaClick }: HeroSectionProps) {
             {/* Micro reassurance badges below CTA */}
             <div className="pt-4 flex items-center gap-6 text-xs text-[#607463]">
               <div className="flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-[#4D6D2E]" />
+                <ShieldCheck className="w-4 h-4 text-[#4D6D2E]" />
                 <span>Pediatrician Formulated</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-[#4D6D2E]" />
+                <Check className="w-4 h-4 text-[#4D6D2E]" />
                 <span>100% Gentle & Pure</span>
               </div>
             </div>
           </div>
 
-          {/* Right Column: Baby Image with curved organic mask & floating doodles */}
+          {/* Right Column: Baby Image with curved organic mask */}
           <div className="lg:col-span-6 relative flex justify-center lg:justify-end">
             <div className="relative w-full max-w-[480px] aspect-4/3 sm:aspect-5/4 lg:aspect-4/3">
-              {/* Decorative floating line-art heart */}
-              <div className="absolute -top-3 right-4 sm:-right-2 z-20">
-                <DoodleHeart className="w-10 h-10 sm:w-12 sm:h-12 text-[#4D6D2E] stroke-[2.5] drop-shadow-xs rotate-6" />
+              {/* Lucide Heart indicator in top right */}
+              <div className="absolute -top-3 right-4 sm:-right-2 z-20 w-11 h-11 rounded-full bg-white/90 backdrop-blur-md shadow-md border border-[#DCE8D5] flex items-center justify-center">
+                <Heart className="w-5 h-5 text-[#4D6D2E] stroke-[2.2] fill-[#4D6D2E]/20" />
               </div>
 
               {/* Organic curved shape wrapper matching design mockup */}
@@ -149,4 +148,3 @@ export function HeroSection({ onCtaClick }: HeroSectionProps) {
     </section>
   );
 }
-
