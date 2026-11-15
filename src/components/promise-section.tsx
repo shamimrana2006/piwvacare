@@ -5,6 +5,7 @@ import Image from "next/image";
 import { ArrowRight, HeartHandshake, ShieldCheck, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { DoodleHeart } from "@/components/decorations";
 
 interface PromiseSectionProps {
   onJoinJourney: () => void;
@@ -35,9 +36,9 @@ export function PromiseSection({ onJoinJourney }: PromiseSectionProps) {
               <div className="absolute inset-0 bg-gradient-to-t from-[#FAF7F2]/30 via-transparent to-transparent pointer-events-none" />
             </div>
 
-            {/* Heart badge at the bottom-right corner of image */}
-            <div className="absolute -bottom-4 right-10 sm:right-16 z-20 w-11 h-11 rounded-full bg-white/95 backdrop-blur-md shadow-md border border-[#DCE8D5] flex items-center justify-center">
-              <Heart className="w-5 h-5 text-[#4D6D2E] stroke-[2.2] fill-[#4D6D2E]/20" />
+            {/* Floating outline doodle heart at the bottom-right corner of image */}
+            <div className="absolute -bottom-4 right-8 sm:right-14 z-20">
+              <DoodleHeart className="w-10 h-10 sm:w-12 sm:h-12 text-[#4D6D2E] stroke-[2.6] -rotate-12 drop-shadow-xs" />
             </div>
 
             {/* Soft decorative blur ring */}

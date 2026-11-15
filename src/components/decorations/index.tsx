@@ -1,6 +1,31 @@
 import React from "react";
 import Image from "next/image";
 
+export function DoodleHeart({
+  className = "w-6 h-6 text-[#588040]",
+}: {
+  className?: string;
+}) {
+  return (
+    <svg
+      viewBox="0 0 48 48"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+    >
+      <path
+        d="M23.8 41.5C23.2 41.5 22.6 41.3 22.1 40.8C15.2 34.6 9.8 29.7 6.3 25.1C2.3 19.9 1 15.6 2.1 10.9C3.4 5.2 8.3 1.5 14.1 1.8C18.2 2.0 21.8 4.2 23.9 7.7C26.1 4.2 29.8 2.0 33.9 1.8C39.7 1.5 44.6 5.2 45.9 10.9C47 15.6 45.7 19.9 41.7 25.1C38.2 29.7 32.8 34.6 25.9 40.8C25.3 41.3 24.6 41.5 23.8 41.5Z"
+        stroke="currentColor"
+        strokeWidth="2.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeDasharray="120"
+        className="transition-all duration-700"
+      />
+    </svg>
+  );
+}
+
 export function WavyUnderline({
   className = "w-44 h-4 text-[#89B072]",
 }: {

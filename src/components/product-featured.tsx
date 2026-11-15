@@ -5,6 +5,7 @@ import Image from "next/image";
 import { ArrowRight, Leaf, Droplets, ShieldCheck, Check, ShoppingBag, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { DoodleHeart } from "@/components/decorations";
 
 interface ProductFeaturedProps {
   onKnowMore: () => void;
@@ -113,9 +114,9 @@ export function ProductFeatured({
 
           {/* Right Column: Introducing Info & Features */}
           <div className="lg:col-span-6 space-y-6 relative lg:pl-4">
-            {/* Floating subtle vector heart on right edge */}
+            {/* Floating outline doodle heart on right edge */}
             <div className="absolute top-1/2 -right-2 sm:-right-8 -translate-y-1/2 pointer-events-none hidden md:block">
-              <Heart className="w-8 h-8 text-[#4D6D2E]/25 stroke-[1.8] rotate-12" />
+              <DoodleHeart className="w-12 h-12 text-[#99B985] stroke-[2.2] opacity-70 rotate-12" />
             </div>
 
             {/* Pill Badge */}

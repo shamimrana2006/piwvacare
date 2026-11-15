@@ -5,6 +5,7 @@ import Image from "next/image";
 import { ArrowRight, Heart, ShieldCheck, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { DoodleHeart } from "@/components/decorations";
 
 interface HeroSectionProps {
   onCtaClick: () => void;
@@ -74,7 +75,7 @@ export function HeroSection({ onCtaClick }: HeroSectionProps) {
                 <span className="block text-[#273D2A] font-extrabold">Care for Every</span>
                 <span className="inline-flex items-center flex-wrap gap-2 text-[#273D2A]">
                   <span>Little Moment</span>
-                  <Heart className="w-7 h-7 sm:w-8 sm:h-8 text-[#4D6D2E] inline-block stroke-[2.2] fill-none" />
+                  <DoodleHeart className="w-8 h-8 sm:w-10 sm:h-10 text-[#4D6D2E] inline-block animate-pulse-subtle stroke-[3]" />
                 </span>
               </h1>
             </div>
@@ -114,9 +115,9 @@ export function HeroSection({ onCtaClick }: HeroSectionProps) {
           {/* Right Column: Baby Image with curved organic mask */}
           <div className="lg:col-span-6 relative flex justify-center lg:justify-end">
             <div className="relative w-full max-w-[480px] aspect-4/3 sm:aspect-5/4 lg:aspect-4/3">
-              {/* Lucide Heart indicator in top right */}
-              <div className="absolute -top-3 right-4 sm:-right-2 z-20 w-11 h-11 rounded-full bg-white/90 backdrop-blur-md shadow-md border border-[#DCE8D5] flex items-center justify-center">
-                <Heart className="w-5 h-5 text-[#4D6D2E] stroke-[2.2] fill-[#4D6D2E]/20" />
+              {/* Decorative floating line-art heart */}
+              <div className="absolute -top-3 right-4 sm:-right-2 z-20">
+                <DoodleHeart className="w-10 h-10 sm:w-12 sm:h-12 text-[#4D6D2E] stroke-[2.5] drop-shadow-xs rotate-6" />
               </div>
 
               {/* Organic curved shape wrapper matching design mockup */}
