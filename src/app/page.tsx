@@ -6,6 +6,7 @@ import { HeroSection } from "@/components/hero-section";
 import { ProductFeatured } from "@/components/product-featured";
 import { FeaturesGrid } from "@/components/features-grid";
 import { PromiseSection } from "@/components/promise-section";
+import { StoryShowcase } from "@/components/story-showcase";
 import { CareGuideSection } from "@/components/care-guide-section";
 import { ReviewsSection } from "@/components/reviews-section";
 import { FaqSection } from "@/components/faq-section";
@@ -51,6 +52,9 @@ export default function Home() {
 
       {/* Our Promise Section ("A Softer Tomorrow for Your Little One") */}
       <PromiseSection onJoinJourney={() => setStayUpdatedOpen(true)} />
+
+      {/* Aesthetic Story & Nature Footprints Section */}
+      <StoryShowcase onExplore={() => setProductDetailOpen(true)} />
 
       {/* Interactive Gentle Daily Care Guide */}
       <CareGuideSection />
