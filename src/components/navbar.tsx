@@ -35,7 +35,7 @@ export function Navbar({
   const navLinks = [
     { id: "home", label: "Home", href: "/" },
     { id: "about", label: "About", href: "/about" },
-    { id: "product", label: "Product", href: "/product", badge: "Upcoming" },
+    { id: "product", label: "Product", href: "/product" },
     { id: "care-guide", label: "Care Guide", href: "/care-guide" },
     { id: "promise", label: "Our Promise", href: "/our-promise" },
     { id: "support", label: "Support", href: "/support" },
@@ -68,18 +68,13 @@ export function Navbar({
                 <Link
                   key={link.id}
                   href={link.href}
-                  className={`relative py-1 transition-colors flex items-center gap-1.5 ${
+                  className={`relative py-1 transition-colors ${
                     isActive
                       ? "text-[#1A3B22] font-semibold"
                       : "text-[#4A5D4D] hover:text-[#1A3B22]"
                   }`}
                 >
                   <span>{link.label}</span>
-                  {link.badge && (
-                    <span className="text-[9px] bg-[#EBF3E7] text-[#365D29] font-bold px-1.5 py-0.5 rounded-full uppercase tracking-wider">
-                      {link.badge}
-                    </span>
-                  )}
                   {isActive && (
                     <span className="absolute bottom-0 left-0 w-full h-[2.5px] bg-[#4D6D2E] rounded-full animate-in fade-in zoom-in-75 duration-200" />
                   )}
@@ -152,18 +147,13 @@ export function Navbar({
                   key={link.id}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`text-base font-medium py-2 px-3 rounded-xl flex items-center justify-between ${
+                  className={`text-base font-medium py-2 px-3 rounded-xl ${
                     isActive
                       ? "bg-[#EBF3E7] text-[#1A3B22] font-semibold"
                       : "text-[#4A5D4D] hover:bg-white"
                   }`}
                 >
-                  <span>{link.label}</span>
-                  {link.badge && (
-                    <span className="text-[10px] bg-[#EBF3E7] text-[#365D29] font-bold px-2 py-0.5 rounded-full uppercase">
-                      {link.badge}
-                    </span>
-                  )}
+                  {link.label}
                 </Link>
               );
             })}
