@@ -9,8 +9,9 @@
 }
 
 @theme {
-  --font-vonique: var(--font-vonique), "Vonique 43", var(--font-sans), system-ui, sans-serif;
-  --font-sans: var(--font-vonique), "Vonique 43", var(--font-sans), system-ui, sans-serif;
+  --font-sans: var(--font-sans), "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-vonique: var(--font-vonique), "Vonique 43", sans-serif;
+  --font-title: var(--font-vonique), "Vonique 43", sans-serif;
   --color-brand-cream: #FAF7F2;
   --color-brand-cream-warm: #F4EFE6;
   --color-brand-cream-card: #FFFFFF;
@@ -38,15 +39,21 @@
 body {
   background-color: #FAF7F2;
   color: #1A3B22;
-  font-family: var(--font-vonique), "Vonique 43", var(--font-sans), system-ui, -apple-system, sans-serif;
+  font-family: var(--font-sans), "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
   overflow-x: hidden;
   selection-background-color: #4D6D2E;
   selection-color: #ffffff;
 }
 
-h1, h2, h3, h4, .font-heading, .font-vonique {
+/* Titles and large headings use Vonique 43 */
+h1, h2, .font-title, .font-vonique {
   font-family: var(--font-vonique), "Vonique 43", var(--font-sans), sans-serif;
   letter-spacing: -0.01em;
+}
+
+/* Subheadings, paragraphs, buttons, navigation, and badges use clean, readable sans-serif */
+p, span, button, a, input, label, li, small, .font-body {
+  font-family: var(--font-sans), "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
 }
 
 /* Custom smooth transitions */
