@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -54,16 +53,6 @@ export function ProductUpcomingPage() {
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             {/* Left Column: Upcoming Headline & VIP Access Form */}
             <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2">
-                <Badge
-                  variant="soft"
-                  className="bg-[#E7EFE3] text-[#345928] border border-[#D5E5CB] px-4 py-1.5 rounded-full text-xs font-semibold shadow-2xs flex items-center gap-1.5"
-                >
-                  <Clock className="w-3.5 h-3.5 text-[#4D6D2E]" />
-                  Official Debut • In Development
-                </Badge>
-              </div>
-
               <div className="space-y-2">
                 <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-[#1B381E] tracking-tight leading-tight">
                   Upcoming

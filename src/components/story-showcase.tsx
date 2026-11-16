@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Heart, Leaf, Footprints, ArrowRight, CheckCircle2, Eye } from "lucide-react";
 
@@ -58,16 +57,6 @@ export function StoryShowcase({ onExplore }: StoryShowcaseProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3 mb-14 md:mb-18">
-          <div className="inline-flex items-center gap-2">
-            <Badge
-              variant="soft"
-              className="bg-[#E7EFE3] text-[#345928] border border-[#D5E5CB] px-4 py-1.5 rounded-full text-xs font-semibold shadow-2xs"
-            >
-              <Footprints className="w-3.5 h-3.5 text-[#4D6D2E]" />
-              Aesthetic Nature & Story
-            </Badge>
-          </div>
-
           <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-extrabold text-[#1B381E] tracking-tight leading-tight">
             Inspired by Tender Little Footsteps
           </h2>
@@ -165,11 +154,6 @@ export function StoryShowcase({ onExplore }: StoryShowcaseProps) {
 
             {/* Narrative text */}
             <div className="lg:col-span-6 space-y-4">
-              <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#4D6D2E] bg-[#EBF3E7] px-3 py-1 rounded-full">
-                <Footprints className="w-3.5 h-3.5" />
-                {stories[activeStory].badge} Spotlight
-              </div>
-
               <h3 className="text-2xl sm:text-3xl font-extrabold text-[#1B381E] leading-tight">
                 {stories[activeStory].title}
               </h3>

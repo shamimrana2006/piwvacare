@@ -2,9 +2,8 @@
 
 import React from "react";
 import Image from "next/image";
-import { ArrowRight, HeartHandshake, ShieldCheck, Heart } from "lucide-react";
+import { ArrowRight, HeartHandshake, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { DoodleHeart } from "@/components/decorations";
 
 interface PromiseSectionProps {
@@ -47,17 +46,6 @@ export function PromiseSection({ onJoinJourney }: PromiseSectionProps) {
 
           {/* Right Column: Promise Copy & CTA */}
           <div className="lg:col-span-6 space-y-6 lg:pl-6">
-            {/* Pill Badge */}
-            <div className="inline-flex items-center">
-              <Badge
-                variant="soft"
-                className="bg-[#E7EFE3] text-[#345928] border border-[#D5E5CB] px-4 py-1.5 rounded-full text-xs font-semibold shadow-2xs flex items-center gap-1.5"
-              >
-                <Heart className="w-3.5 h-3.5 text-[#4D6D2E] fill-[#4D6D2E]/20" />
-                Our Promise
-              </Badge>
-            </div>
-
             {/* Headline */}
             <div className="space-y-3">
               <h2 className="text-3xl sm:text-4xl lg:text-[46px] font-extrabold text-[#1B381E] leading-tight tracking-tight">

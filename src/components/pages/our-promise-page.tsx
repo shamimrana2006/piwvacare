@@ -2,7 +2,6 @@
 
 import React from "react";
 import Image from "next/image";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   ShieldCheck,
@@ -33,16 +32,6 @@ export function OurPromisePage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-          <div className="inline-flex items-center gap-2">
-            <Badge
-              variant="soft"
-              className="bg-[#E7EFE3] text-[#345928] border border-[#D5E5CB] px-4 py-1.5 rounded-full text-xs font-semibold shadow-2xs flex items-center gap-1.5"
-            >
-              <HeartHandshake className="w-3.5 h-3.5 text-[#4D6D2E]" />
-              Our Sacred Commitment
-            </Badge>
-          </div>
-
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[#1B381E] tracking-tight leading-tight">
             Our Unbreakable Promise to Your Family
           </h1>
@@ -70,9 +59,6 @@ export function OurPromisePage() {
             </div>
 
             <div className="lg:col-span-6 space-y-5">
-              <span className="text-xs font-bold uppercase tracking-wider text-[#4D6D2E] bg-[#EBF3E7] px-3 py-1 rounded-full">
-                The Touch of Trust
-              </span>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1B381E]">
                 A Softer Tomorrow for Every Newborn
               </h2>
@@ -100,9 +86,6 @@ export function OurPromisePage() {
         {/* Purity Comparison Table */}
         <div className="bg-white rounded-3xl p-6 sm:p-12 border border-[#DFEBD9] shadow-xs mb-20 overflow-x-auto">
           <div className="text-center max-w-2xl mx-auto space-y-2 mb-10">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#4D6D2E] bg-[#EBF3E7] px-3 py-1 rounded-full">
-              Standard of Excellence
-            </span>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1B381E]">
               How Piwva Compares
             </h2>

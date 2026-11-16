@@ -2,9 +2,8 @@
 
 import React from "react";
 import Image from "next/image";
-import { ArrowRight, Heart, ShieldCheck, Check } from "lucide-react";
+import { ArrowRight, ShieldCheck, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { DoodleHeart } from "@/components/decorations";
 
 interface HeroSectionProps {
@@ -57,17 +56,6 @@ export function HeroSection({ onCtaClick }: HeroSectionProps) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           {/* Left Column: Hero Copy & CTA */}
           <div className="lg:col-span-6 space-y-6 lg:pr-6 relative">
-            {/* Pill Badge with Lucide Heart */}
-            <div className="inline-flex items-center gap-2">
-              <Badge
-                variant="soft"
-                className="bg-[#E7EFE3] text-[#345928] border border-[#D5E5CB] px-4 py-1.5 rounded-full text-xs font-semibold shadow-2xs flex items-center gap-1.5"
-              >
-                <Heart className="w-3.5 h-3.5 text-[#4D6D2E] fill-[#4D6D2E]" />
-                Gentle Care. Happier Baby.
-              </Badge>
-            </div>
-
             {/* Main Headline */}
             <div className="space-y-1">
               <h1 className="text-4xl sm:text-5xl lg:text-[62px] font-extrabold text-[#1B381E] leading-[1.12] tracking-tight">

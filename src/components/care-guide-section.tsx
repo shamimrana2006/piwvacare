@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import { Clock, Sun, Moon, Bath, Shield, CheckCircle2 } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 
 export function CareGuideSection() {
   const [activeStep, setActiveStep] = useState(0);
@@ -62,13 +61,6 @@ export function CareGuideSection() {
     <section id="care-guide" className="py-20 md:py-28 bg-[#FAF7F2] relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto space-y-3 mb-12">
-          <Badge
-            variant="soft"
-            className="bg-[#E7EFE3] text-[#345928] border border-[#D5E5CB] px-4 py-1.5 rounded-full text-xs font-semibold shadow-2xs"
-          >
-            <Clock className="w-3.5 h-3.5 text-[#4D6D2E]" />
-            Piwva Daily Rituals
-          </Badge>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1B381E] tracking-tight">
             The Gentle Baby Care Guide
           </h2>
@@ -117,9 +109,6 @@ export function CareGuideSection() {
         <div className="max-w-4xl mx-auto bg-white rounded-3xl p-6 sm:p-10 border border-[#DEE8D8] shadow-sm">
           <div className="flex flex-col md:flex-row gap-8 items-start">
             <div className="flex-1 space-y-4">
-              <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#4D6D2E] bg-[#EBF3E7] px-3 py-1 rounded-full">
-                <span>Step {activeStep + 1} of 4</span>
-              </div>
               <h3 className="text-2xl sm:text-3xl font-extrabold text-[#1B381E]">
                 {steps[activeStep].title}
               </h3>

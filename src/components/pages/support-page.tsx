@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -74,16 +73,6 @@ export function SupportPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-          <div className="inline-flex items-center gap-2">
-            <Badge
-              variant="soft"
-              className="bg-[#E7EFE3] text-[#345928] border border-[#D5E5CB] px-4 py-1.5 rounded-full text-xs font-semibold shadow-2xs flex items-center gap-1.5"
-            >
-              <Heart className="w-3.5 h-3.5 text-[#4D6D2E] fill-[#4D6D2E]/20" />
-              Parent Care Concierge
-            </Badge>
-          </div>
-
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[#1B381E] tracking-tight leading-tight">
             We&apos;re Here for You & Your Little One
           </h1>
@@ -289,9 +278,6 @@ export function SupportPage() {
           {/* Quick FAQ Accordion */}
           <div className="lg:col-span-6 space-y-4">
             <div className="space-y-1">
-              <span className="text-xs font-bold uppercase tracking-wider text-[#4D6D2E] bg-[#EBF3E7] px-3 py-1 rounded-full">
-                Instant Answers
-              </span>
               <h3 className="text-2xl font-bold text-[#1B381E]">
                 Common Support Questions
               </h3>

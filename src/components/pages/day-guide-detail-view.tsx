@@ -7,7 +7,6 @@ import {
   DayGuide,
   FIRST_90_DAYS_DATA,
 } from "@/data/care-guide-days";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   Calendar,
@@ -139,17 +138,11 @@ export function DayGuideDetailView({ guide }: DayGuideDetailViewProps) {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
         {/* Main Day Header */}
         <div className="space-y-4 mb-8">
-          <div className="flex flex-wrap items-center gap-2">
-            <Badge
-              variant="soft"
-              className="bg-[#E7EFE3] text-[#345928] border border-[#D5E5CB] px-3.5 py-1 rounded-full text-xs font-semibold shadow-2xs"
-            >
-              {guide.phase} &bull; {guide.phaseBadge}
-            </Badge>
-            <span className="text-xs text-[#6B806E] flex items-center gap-1 font-medium">
-              <Clock className="w-3.5 h-3.5 text-[#4D6D2E]" />
-              {guide.readTime}
-            </span>
+          <div className="flex items-center gap-2 text-xs text-[#6B806E] font-medium">
+            <Clock className="w-3.5 h-3.5 text-[#4D6D2E]" />
+            <span>{guide.readTime}</span>
+            <span>&bull;</span>
+            <span>{guide.phase}</span>
           </div>
 
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#1B381E] leading-tight tracking-tight">
@@ -187,9 +180,6 @@ export function DayGuideDetailView({ guide }: DayGuideDetailViewProps) {
         {/* Step-by-Step Guidance: কীভাবে কী করবেন */}
         <div className="bg-white rounded-3xl p-6 sm:p-10 border border-[#DEE8D8] shadow-xs mb-8 space-y-6">
           <div className="space-y-1">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#4D6D2E] bg-[#EBF3E7] px-3 py-1 rounded-full">
-              Step-by-Step Guidance
-            </span>
             <h2 className="text-2xl font-extrabold text-[#1B381E]">
               What to Do on Day {guide.dayNumber}
             </h2>
@@ -335,3 +325,4 @@ export function DayGuideDetailView({ guide }: DayGuideDetailViewProps) {
     </div>
   );
 }
+

@@ -7,8 +7,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Badge } from "@/components/ui/badge";
-import { HelpCircle } from "lucide-react";
 
 export function FaqSection() {
   const faqs = [
@@ -38,13 +36,6 @@ export function FaqSection() {
     <section id="faq" className="py-20 md:py-28 bg-[#FAF7F2] relative">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center space-y-3 mb-12">
-          <Badge
-            variant="soft"
-            className="bg-[#E7EFE3] text-[#345928] border border-[#D5E5CB] px-4 py-1.5 rounded-full text-xs font-semibold shadow-2xs"
-          >
-            <HelpCircle className="w-3.5 h-3.5 text-[#4D6D2E]" />
-            Frequently Asked Questions
-          </Badge>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1B381E] tracking-tight">
             Parent Questions, Answered
           </h2>

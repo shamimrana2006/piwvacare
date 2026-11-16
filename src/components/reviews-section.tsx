@@ -1,8 +1,7 @@
 "use client";
 
 import React from "react";
-import { Star, CheckCircle, Heart } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
+import { Star, CheckCircle } from "lucide-react";
 
 export function ReviewsSection() {
   const reviews = [
@@ -39,13 +38,6 @@ export function ReviewsSection() {
     <section className="py-20 md:py-24 bg-[#FAF7F2] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto space-y-3 mb-14">
-          <Badge
-            variant="soft"
-            className="bg-[#E7EFE3] text-[#345928] border border-[#D5E5CB] px-4 py-1.5 rounded-full text-xs font-semibold shadow-2xs"
-          >
-            <Heart className="w-3.5 h-3.5 text-[#4D6D2E] fill-current" />
-            Loved by 10,000+ Families
-          </Badge>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1B381E] tracking-tight">
             Real Stories from Happy Parents
           </h2>

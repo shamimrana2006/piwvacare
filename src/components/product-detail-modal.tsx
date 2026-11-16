@@ -9,7 +9,6 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import {
   Leaf,
   Droplets,
@@ -39,10 +38,6 @@ export function ProductDetailModal({
       <DialogContent className="sm:max-w-[720px] bg-[#FAF7F2] border-[#D6E5CF] text-[#1A3B22] p-6 max-h-[92vh] overflow-y-auto">
         <DialogHeader>
           <div className="flex items-center gap-2">
-            <Badge variant="soft" className="bg-[#E7EFE3] text-[#345928] border-[#D5E5CB]">
-              <Leaf className="w-3 h-3 text-[#4D6D2E]" />
-              Signature Formulation
-            </Badge>
             <div className="flex items-center gap-1 text-xs text-[#596D5C]">
               <div className="flex text-amber-500">
                 {[...Array(5)].map((_, i) => (

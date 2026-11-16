@@ -48,16 +48,6 @@ export function FeaturesGrid() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3 mb-14 md:mb-20">
-          <div className="inline-flex items-center">
-            <Badge
-              variant="soft"
-              className="bg-[#E7EFE3] text-[#345928] border border-[#D5E5CB] px-4 py-1.5 rounded-full text-xs font-semibold shadow-2xs flex items-center gap-1.5"
-            >
-              <Heart className="w-3.5 h-3.5 text-[#4D6D2E] fill-[#4D6D2E]/20" />
-              Why Piwva?
-            </Badge>
-          </div>
-
           <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-extrabold text-[#1B381E] tracking-tight leading-tight">
             Because Your Baby{" "}
             <span className="relative inline-block">

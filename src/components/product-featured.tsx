@@ -10,11 +10,9 @@ import {
   ShieldCheck,
   Check,
   Bell,
-  Clock,
   Heart,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { DoodleHeart } from "@/components/decorations";
 
 interface ProductFeaturedProps {
@@ -113,17 +111,6 @@ export function ProductFeatured({
             {/* Floating outline doodle heart on right edge */}
             <div className="absolute top-1/2 -right-2 sm:-right-8 -translate-y-1/2 pointer-events-none hidden md:block">
               <DoodleHeart className="w-12 h-12 text-[#99B985] stroke-[2.2] opacity-70 rotate-12" />
-            </div>
-
-            {/* Pill Badge */}
-            <div className="inline-flex items-center gap-2">
-              <Badge
-                variant="soft"
-                className="bg-[#E7EFE3] text-[#345928] border border-[#D5E5CB] px-4 py-1.5 rounded-full text-xs font-semibold gap-1.5 shadow-2xs"
-              >
-                <Clock className="w-3.5 h-3.5 text-[#4D6D2E]" />
-                Upcoming Launch • In Final Clinical Verification
-              </Badge>
             </div>
 
             {/* Heading */}

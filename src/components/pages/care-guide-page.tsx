@@ -7,7 +7,6 @@ import {
   CARE_PROGRAMS,
   FIRST_90_DAYS_DATA,
 } from "@/data/care-guide-days";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   Calendar,
@@ -49,16 +48,6 @@ export function CareGuidePage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header Hero */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-          <div className="inline-flex items-center gap-2">
-            <Badge
-              variant="soft"
-              className="bg-[#E7EFE3] text-[#345928] border border-[#D5E5CB] px-4 py-1.5 rounded-full text-xs font-semibold shadow-2xs flex items-center gap-1.5"
-            >
-              <Calendar className="w-3.5 h-3.5 text-[#4D6D2E]" />
-              The Piwva Baby Care Library
-            </Badge>
-          </div>
-
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[#1B381E] tracking-tight leading-tight">
             Gentle Developmental Pathways
           </h1>
@@ -72,9 +61,6 @@ export function CareGuidePage() {
         <div className="mb-20">
           <div className="flex items-center justify-between mb-8">
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-[#4D6D2E]">
-                Comprehensive Care Library
-              </span>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1B381E]">
                 Explore Our Developmental Roadmaps
               </h2>
@@ -157,11 +143,6 @@ export function CareGuidePage() {
         {/* Featured Program: The First 90 Days Hub & Day Browser */}
         <div className="bg-white rounded-[36px] sm:rounded-[48px] p-6 sm:p-12 lg:p-16 border border-[#DEE8D8] shadow-sm mb-16">
           <div className="max-w-3xl space-y-3 mb-10">
-            <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#4D6D2E] bg-[#EBF3E7] px-3 py-1 rounded-full">
-              <BookOpen className="w-3.5 h-3.5" />
-              Featured Flagship Pathway
-            </div>
-
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#1B381E] leading-tight">
               The First 90 Days: Complete Daily Roadmap
             </h2>
