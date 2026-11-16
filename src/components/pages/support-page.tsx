@@ -54,13 +54,252 @@ export function SupportPage() {
     setSubmitted(true);
   };
 
-  const [urgentPhone, setUrgentPhone] = useState("");
-  const [urgentRequested, setUrgentRequested] = useState(false);
+  const [emergencyQuery, setEmergencyQuery] = useState("");
+  const [emergencyResult, setEmergencyResult] = useState<{
+    query: string;
+    level: "critical" | "urgent" | "moderate";
+    levelLabel: string;
+    levelColor: string;
+    title: string;
+    summary: string;
+    actions: string[];
+    warnings: string[];
+    doNot: string[];
+    hotline: string;
+    hotlineName: string;
+  } | null>(null);
 
-  const handleUrgentCallback = (e: React.FormEvent) => {
+  const getEmergencyTriage = (q: string) => {
+    const text = q.toLowerCase();
+
+    // 1. Fever / জ্বর
+    if (
+      text.includes("fever") ||
+      text.includes("temp") ||
+      text.includes("hot") ||
+      text.includes("জ্বর") ||
+      text.includes("গরম") ||
+      text.includes("তাপ")
+    ) {
+      return {
+        query: q,
+        level: "critical" as const,
+        levelLabel: "জরুরি সতর্কতা (Urgent / Critical)",
+        levelColor: "bg-red-50 text-red-800 border-red-200",
+        title: "বাচ্চার জ্বর / High Fever Triage",
+        summary:
+          "নবজাতক বা ৩ মাসের কম বয়সী শিশুর শরীরের তাপমাত্রা ১০০.৪°F (৩৮°C) বা তার বেশি হলে বিলম্ব না করে তাৎক্ষণিক ডাক্তার দেখান।",
+        actions: [
+          "বাচ্চার শরীরের অতিরিক্ত ভারী পোশাক খুলে দিন; পাতলা সুতি আরামদায়ক পোশাক পরান।",
+          "ঘরের তাপমাত্রা স্বাভাবিক ও আরামদায়ক রাখুন (২২–২৪° সেলসিয়াস)।",
+          "ঘন ঘন বুকের দুধ বা ফর্মুলা খাওয়ান যেন কোনোভাবেই পানিশূন্যতা না হয়।",
+          "হালকা কুসুম গরম পানিতে নরম সুতি কাপড় ভিজিয়ে শরীর মুছে দিতে পারেন (কখনও ঠান্ডা পানি বা বরফ নয়)।",
+        ],
+        warnings: [
+          "বাচ্চা খুব নিস্তেজ হয়ে পড়া বা জাগানো কঠিন হলে।",
+          "টানা কান্নাকাটি বা গোঙানির মতো শব্দ করা।",
+          "প্রস্রাবের পরিমাণ কমে যাওয়া (৬ ঘণ্টার বেশি ভেজা ডায়াপার না থাকা)।",
+        ],
+        doNot: [
+          "ডাক্তারের সুনির্দিষ্ট প্রেসক্রিপশন ছাড়া প্যারাসিটামল বা কোনো ওষুধ দেবেন না।",
+          "বাচ্চাকে কখনোই অ্যাসপিরিন (Aspirin) বা ঠান্ডা পানি দিয়ে স্নান করাবেন না।",
+        ],
+        hotline: "tel:18002221222",
+        hotlineName: "জরুরি পেডিয়াট্রিক হেল্পলাইনে কল করুন: 1-800-222-1222",
+      };
+    }
+
+    // 2. Swallowed / মুখে দিয়েছে / খেয়েছে
+    if (
+      text.includes("swallow") ||
+      text.includes("mouth") ||
+      text.includes("eat") ||
+      text.includes("ingest") ||
+      text.includes("মুখে") ||
+      text.includes("খেয়ে") ||
+      text.includes("ক্রিম") ||
+      text.includes("lotion") ||
+      text.includes("soap") ||
+      text.includes("বিষ") ||
+      text.includes("পয়জন")
+    ) {
+      return {
+        query: q,
+        level: "urgent" as const,
+        levelLabel: "দ্রুত পর্যবেক্ষণ (Urgent Assessment)",
+        levelColor: "bg-amber-50 text-amber-800 border-amber-200",
+        title: "ক্রিম, লোশন বা অপরিচিত বস্তু মুখে দেওয়া / Accidental Ingestion",
+        summary:
+          "বাচ্চা মুখে কোনো লোশন বা অপরিচিত বস্তু দিলে আতঙ্কিত না হয়ে শান্ত থাকুন। Piwva সহ ভালো বেবি লোশন নন-টক্সিক হলেও সঠিক উপায়ে মুখ পরিষ্কার করা দরকার।",
+        actions: [
+          "বাচ্চার মুখে আঙুল দিয়ে জোর করবেন না; নরম ভেজা কাপড় দিয়ে মুখের ভেতরের অবশিষ্ট অংশ মুছে পরিষ্কার করুন।",
+          "বাচ্চাকে অল্প বুকের দুধ বা পানি পান করান যেন গলার অস্বস্তি কমে।",
+          "যে জিনিসটি মুখে দিয়েছিল তার বোতল বা মোড়ক নিজের কাছে রাখুন যাতে প্রয়োজনে হেল্পলাইনে নাম বলা যায়।",
+          "বাচ্চার শ্বাস-প্রশ্বাস এবং স্বাভাবিক আচরণ ২০-৩০ মিনিট নিবিড়ভাবে লক্ষ্য করুন।",
+        ],
+        warnings: [
+          "বাচ্চা বমি করলে বা অতিরিক্ত লালা ঝরলে।",
+          "কাশি, গলায় আটকে যাওয়ার মতো আওয়াজ বা শ্বাসকষ্ট হলে।",
+          "বাচ্চা নিস্তেজ বা অস্বাভাবিক আচরণ করলে দ্রুত ডাক্তারের কাছে যান।",
+        ],
+        doNot: [
+          "বাচ্চাকে জোর করে বমি করানোর চেষ্টা করবেন না (Do NOT induce vomiting)।",
+          "ডাক্তারের পরামর্শ ছাড়া কোনো লবণ-পানি বা ঘরোয়া ওষুধ খাওয়াবেন না।",
+        ],
+        hotline: "tel:18002221222",
+        hotlineName: "পয়জন কন্ট্রোল হেল্পলাইনে কল করুন (ফ্রি ২৪/৭): 1-800-222-1222",
+      };
+    }
+
+    // 3. Rash / র‍্যাশ / এলার্জি / লাল দাগ
+    if (
+      text.includes("rash") ||
+      text.includes("hive") ||
+      text.includes("allergy") ||
+      text.includes("spot") ||
+      text.includes("র‍্যাশ") ||
+      text.includes("এলার্জি") ||
+      text.includes("লাল") ||
+      text.includes("চুলকানি") ||
+      text.includes("ফোলা")
+    ) {
+      return {
+        query: q,
+        level: "urgent" as const,
+        levelLabel: "ত্বকের জরুরি পর্যবেক্ষণ (Skin & Allergy Triage)",
+        levelColor: "bg-amber-50 text-amber-800 border-amber-200",
+        title: "আকস্মিক লাল র‍্যাশ বা এলার্জি / Sudden Skin Rash",
+        summary:
+          "বাচ্চার ত্বকে হঠাৎ লাল দাগ বা ফোলা দেখা দিলে প্রথমে খেয়াল করুন তার শ্বাসকষ্ট বা মুখমণ্ডল ফোলা আছে কিনা।",
+        actions: [
+          "নতুন কোনো সাবান, তেল, ওয়াইপ্স বা লোশন ব্যবহার করে থাকলে সাথে সাথে ধুয়ে বন্ধ করে দিন।",
+          "আক্রান্ত ত্বক পরিষ্কার ও শুষ্ক রাখুন; আঁটসাঁট পোশাক খুলে হালকা সুতি কাপড় পরান।",
+          "বাচ্চার হাত দিয়ে আঁচড়াতে দেবেন না; নখ ছোট রাখুন বা সুতি মিটেন পরিয়ে দিন।",
+          "প্রয়োজনে চিকিৎসকের পরামর্শের জন্য র‍্যাশের স্পষ্ট ছবি তুলে রাখুন।",
+        ],
+        warnings: [
+          "ঠোঁট, চোখ বা জিব ফুলে উঠলে (অ্যানাফিল্যাক্সিস ইমার্জেন্সি)।",
+          "র‍্যাশের সাথে জ্বর বা শ্বাস নেওয়ার সময় শব্দ হলে তাৎক্ষণিক হাসপাতালে যান।",
+        ],
+        doNot: [
+          "ডাক্তার না দেখিয়ে ফার্মেসি থেকে স্টেরয়েড ক্রিম বা কোনো মলম লাগাবেন না।",
+          "খুব গরম পানি দিয়ে গোসল করাবেন না।",
+        ],
+        hotline: "tel:18002221222",
+        hotlineName: "অন-কল পেডিয়াট্রিক নার্স: 1-800-222-1222",
+      };
+    }
+
+    // 4. Breathing / শ্বাসকষ্ট / কাশি
+    if (
+      text.includes("breath") ||
+      text.includes("gasp") ||
+      text.includes("cough") ||
+      text.includes("chok") ||
+      text.includes("শ্বাস") ||
+      text.includes("কাশি") ||
+      text.includes("ঘড়ঘড়") ||
+      text.includes("দম")
+    ) {
+      return {
+        query: q,
+        level: "critical" as const,
+        levelLabel: "জরুরি হাসপাতাল সতর্কতা (Immediate ER Care)",
+        levelColor: "bg-red-50 text-red-800 border-red-200",
+        title: "বাচ্চার শ্বাসকষ্ট বা তীব্র কাশি / Respiratory Distress",
+        summary:
+          "বাচ্চা দ্রুত বা অস্বাভাবিক শব্দে শ্বাস নিলে বা বুকের খাঁচা ডেবে গেলে এটি তাৎক্ষণিক জরুরি চিকিৎসার লক্ষণ।",
+        actions: [
+          "বাচ্চাকে সোজা করে নিজের কোলে রাখুন (মাথা ও ঘাড় সোজা রাখুন যেন শ্বাসনালী খোলা থাকে)।",
+          "বাচ্চার গলার চারপাশের আঁটসাঁট পোশাক ঢিলে করে দিন।",
+          "নাক বন্ধ থাকলে ১-২ ফোঁটা নরমাল স্যালাইন দিয়ে নাক পরিষ্কার করুন।",
+          "এক মুহূর্তও বিলম্ব না করে জরুরি অ্যাম্বুলেন্স (999 / 911 / 112) ডাকুন বা নিকটস্থ হাসপাতালে নিন।",
+        ],
+        warnings: [
+          "প্রতি মিনিটে ৬০ বারের বেশি দ্রুত শ্বাস নেওয়া।",
+          "শ্বাস নেওয়ার সময় বুকের খাঁচা ও পাঁজরের চামড়া ভেতরে ডেবে যাওয়া (retractions)।",
+          "ঠোঁট বা নখ নীলচে হয়ে যাওয়া।",
+        ],
+        doNot: [
+          "বাচ্চাকে শোয়ানো অবস্থায় রাখবেন না।",
+          "ডাক্তারের পরামর্শ ছাড়া কোনো কাশির সিরাপ খাওয়াবেন না।",
+        ],
+        hotline: "tel:999",
+        hotlineName: "জরুরি অ্যাম্বুলেন্স কল করুন: 999 / 911 / 112",
+      };
+    }
+
+    // 5. Crying / কান্না / পেট ব্যথা / colic
+    if (
+      text.includes("cry") ||
+      text.includes("colic") ||
+      text.includes("pain") ||
+      text.includes("screaming") ||
+      text.includes("কান্না") ||
+      text.includes("পেট") ||
+      text.includes("ব্যথা") ||
+      text.includes("চিৎকার")
+    ) {
+      return {
+        query: q,
+        level: "moderate" as const,
+        levelLabel: "শান্ত করার জরুরি গাইড (Soothing & Comfort)",
+        levelColor: "bg-emerald-50 text-emerald-800 border-emerald-200",
+        title: "বাচ্চার কান্না থামছে না / Inconsolable Crying & Colic",
+        summary:
+          "বাচ্চা একটানা কাঁদলে প্রথমে ক্ষুধা, ডায়াপার, পেটে গ্যাস বা শরীরের তাপমাত্রা চেক করুন।",
+        actions: [
+          "বাচ্চাকে কোলে নিয়ে পেটে বৃত্তাকারে ঘড়ির কাঁটার মতো আলতো মালিশ করুন।",
+          "বাচ্চাকে পিঠে শুইয়ে দুই পা ধরে সাইকেলের প্যাডেলের মতো আলতো করে নাড়ান (গ্যাস বের হতে সাহায্য করে)।",
+          "কাঁধে নিয়ে মৃদু দোলান অথবা হালকা গরম কাপড় পেটে আলতো ছোঁয়া দিন।",
+          "হোয়াইট নয়েজ (ফ্যান বা পানির মৃদু শব্দ) অনেক সময় বাচ্চার নার্ভ শান্ত করে।",
+        ],
+        warnings: [
+          "টানা ৩ ঘণ্টার বেশি তীব্র চিৎকার করে কান্না।",
+          "পেট খুব শক্ত ও ফোলা থাকা এবং বমি করা।",
+          "কান্নার সাথে তাপমাত্রা ১০০.৪°F বা বেশি হওয়া।",
+        ],
+        doNot: [
+          "অস্থির হয়ে বাচ্চাকে কখনো জোরে ঝাঁকুনি (Shake) দেবেন না।",
+          "ডাক্তারের পরামর্শ ছাড়া কোনো ঘুমের ওষুধ বা ড্রপ খাওয়াবেন না।",
+        ],
+        hotline: "tel:18002221222",
+        hotlineName: "পেডিয়াট্রিক নার্স সাপোর্ট: 1-800-222-1222",
+      };
+    }
+
+    // Default intelligent triage
+    return {
+      query: q,
+      level: "urgent" as const,
+      levelLabel: "জরুরি গাইডেন্স (Instant Pediatric Guidance)",
+      levelColor: "bg-rose-50 text-rose-800 border-rose-200",
+      title: "আপনার প্রশ্নের তাৎক্ষণিক জরুরি গাইড",
+      summary: `"${q}" সম্পর্কে জরুরি অবস্থায় আতঙ্কিত না হয়ে শান্তভাবে বাচ্চার শারীরিক অবস্থা পর্যবেক্ষণ করুন।`,
+      actions: [
+        "বাচ্চার তাপমাত্রা ও স্বাভাবিক শ্বাস-প্রশ্বাস পরীক্ষা করুন।",
+        "বাচ্চা সক্রিয় আছে কিনা নাকি খুব নিস্তেজ ও অলস হয়ে পড়েছে লক্ষ্য করুন।",
+        "বাচ্চা প্রতি ২৪ ঘণ্টায় অন্তত ৬ বার প্রস্রাব করছে কিনা দেখুন।",
+        "যেকোনো সন্দেহ বা আশঙ্কায় সরাসরি অন-ডিউটি পেডিয়াট্রিক নার্সকে কল করুন।",
+      ],
+      warnings: [
+        "বাচ্চার শ্বাস নিতে কষ্ট হওয়া বা গোঙানির শব্দ।",
+        "জ্বর ১০০.৪°F এর বেশি হওয়া (বিশেষ করে ৩ মাসের নিচে)।",
+        "বাচ্চা ডাকলে সাড়া না দেওয়া বা খাবার খেতে অস্বীকার করা।",
+      ],
+      doNot: [
+        "ডাক্তারের পরামর্শ ছাড়া কোনো ওষুধ খাওয়াবেন না।",
+        "ইন্টারনেটের অপ্রমাণিত ঘরোয়া টোটকা প্রয়োগ করবেন না।",
+      ],
+      hotline: "tel:18002221222",
+      hotlineName: "জরুরি অন-কল পেডিয়াট্রিশিয়ান: 1-800-222-1222 (বা 999)",
+    };
+  };
+
+  const handleEmergencySubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!urgentPhone.trim()) return;
-    setUrgentRequested(true);
+    if (!emergencyQuery.trim()) return;
+    setEmergencyResult(getEmergencyTriage(emergencyQuery));
   };
 
   const supportFaqs = [
@@ -100,7 +339,7 @@ export function SupportPage() {
           </p>
         </div>
 
-        {/* Urgent Baby Health Emergency Support Banner (No Login Required) */}
+        {/* Urgent Baby Health Emergency Support - Single Input Box (No Login Required) */}
         <section
           id="emergency-support"
           aria-label="Emergency Baby Health Support"
@@ -109,182 +348,156 @@ export function SupportPage() {
           {/* Subtle warm rose ambient glow */}
           <div className="absolute top-0 right-0 w-80 h-80 bg-rose-200/40 rounded-full blur-3xl -z-0 pointer-events-none" />
 
-          <div className="relative z-10 space-y-6">
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-[#F7D4CF] pb-6">
-              <div className="space-y-1.5">
-                <div className="flex items-center gap-3">
-                  <div className="w-11 h-11 rounded-2xl bg-[#D32F2F] text-white flex items-center justify-center shadow-md shadow-red-600/30 animate-pulse">
-                    <HeartPulse className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <h2 className="text-2xl sm:text-3xl font-black text-[#8A1818] tracking-tight">
-                      Emergency Baby Health Support
-                    </h2>
-                    <p className="text-xs sm:text-sm font-semibold text-[#A83232]">
-                      No login, password, or account needed &bull; Immediate 1-tap direct contact
-                    </p>
-                  </div>
-                </div>
+          <div className="relative z-10 max-w-3xl mx-auto space-y-6">
+            {/* Header */}
+            <div className="text-center space-y-2">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-red-100 border border-red-200 text-red-900 text-xs font-bold shadow-2xs mb-1">
+                <span className="w-2.5 h-2.5 rounded-full bg-red-600 animate-ping" />
+                <span>24/7 Emergency Baby Health Triage &bull; Zero Login Required</span>
               </div>
-
-              <div className="flex items-center gap-2">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-100 border border-red-200 text-red-900 text-xs font-bold shadow-2xs">
-                  <span className="w-2.5 h-2.5 rounded-full bg-red-600 animate-ping" />
-                  <span>24/7 Live Triage Active</span>
-                </div>
-              </div>
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-[#8A1818] tracking-tight">
+                Emergency Baby Health Question?
+              </h2>
+              <p className="text-xs sm:text-base text-[#7A2E2E]">
+                জরুরি মুহূর্তে কোনো লগইন বা পাসওয়ার্ডের ঝামেলা নেই। বাচ্চার কী সমস্যা হচ্ছে শুধু লিখুন — তাৎক্ষণিক সঠিক করণীয় জেনে নিন।
+              </p>
             </div>
 
-            {/* 3 Instant Action Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-              {/* Card 1: 1-Tap Emergency Call */}
-              <div className="bg-white/95 rounded-3xl p-6 border border-[#F5C7C1] shadow-xs flex flex-col justify-between space-y-4">
-                <div className="space-y-2.5">
-                  <div className="w-11 h-11 rounded-2xl bg-red-50 text-[#D32F2F] flex items-center justify-center border border-red-100">
-                    <PhoneCall className="w-5 h-5" />
+            {/* Single Big Input Box */}
+            <form onSubmit={handleEmergencySubmit} className="space-y-3">
+              <div className="relative flex items-center bg-white rounded-full p-2 border-2 border-[#F4A8A0] shadow-md focus-within:border-[#D32F2F] transition-all">
+                <Input
+                  type="text"
+                  required
+                  placeholder="যেমন: বাচ্চার ১০০ জ্বর / ক্রিম মুখে দিয়ে ফেলেছে / হঠাৎ গায়ে লাল র‍্যাশ / জোরে শ্বাস নিচ্ছে..."
+                  value={emergencyQuery}
+                  onChange={(e) => setEmergencyQuery(e.target.value)}
+                  className="flex-1 bg-transparent border-0 text-sm sm:text-base text-[#1A3B22] placeholder:text-[#9A7B76] focus-visible:ring-0 focus-visible:ring-offset-0 px-4 h-12"
+                />
+                <Button
+                  type="submit"
+                  className="bg-[#D32F2F] hover:bg-[#B71C1C] text-white rounded-full px-5 sm:px-8 h-12 text-xs sm:text-sm font-bold shadow-md shadow-red-700/25 shrink-0 cursor-pointer flex items-center gap-2"
+                >
+                  <HeartPulse className="w-4 h-4" />
+                  <span>জরুরি পরামর্শ পান</span>
+                </Button>
+              </div>
+
+              {/* Quick Clickable Suggestions for panicked parents */}
+              <div className="flex flex-wrap items-center justify-center gap-2 pt-1 text-xs text-[#7A3636]">
+                <span className="font-semibold text-[11px] text-[#8C4646]">কুইক ট্যাপ:</span>
+                {[
+                  { label: "🌡️ বাচ্চার জ্বর (Fever)", query: "বাচ্চার ১০০ জ্বর এসেছে কি করব" },
+                  { label: "🧴 ক্রিম বা লোশন মুখে দিয়েছে", query: "বাচ্চা লোশন মুখে দিয়ে ফেলেছে" },
+                  { label: "🔴 হঠাৎ লাল র‍্যাশ বা এলার্জি", query: "হঠাৎ শরীরে লাল র‍্যাশ বা আমবাত" },
+                  { label: "🫁 জোরে বা অস্বাভাবিক শ্বাস নিচ্ছে", query: "বাচ্চা জোরে শ্বাস নিচ্ছে বুক ডেবে যাচ্ছে" },
+                  { label: "😭 একটানা কান্না থামছে না", query: "বাচ্চার কান্না থামছে না পেটে গ্যাস" },
+                ].map((chip, idx) => (
+                  <button
+                    key={idx}
+                    type="button"
+                    onClick={() => {
+                      setEmergencyQuery(chip.query);
+                      setEmergencyResult(getEmergencyTriage(chip.query));
+                    }}
+                    className="bg-white/90 hover:bg-white text-[#8A1818] border border-[#F2BCB5] hover:border-[#D32F2F] px-3 py-1 rounded-full text-[11px] font-semibold transition-all shadow-2xs cursor-pointer"
+                  >
+                    {chip.label}
+                  </button>
+                ))}
+              </div>
+            </form>
+
+            {/* Instant Emergency Result Card */}
+            {emergencyResult && (
+              <div className="bg-white rounded-3xl p-6 sm:p-8 border-2 border-[#F4CCC6] shadow-lg space-y-5 animate-in fade-in duration-300">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#F5E1DD] pb-4">
+                  <div>
+                    <span className={`inline-block px-3 py-1 rounded-full text-xs font-bold border mb-1.5 ${emergencyResult.levelColor}`}>
+                      {emergencyResult.levelLabel}
+                    </span>
+                    <h3 className="text-xl sm:text-2xl font-black text-[#1B381E]">
+                      {emergencyResult.title}
+                    </h3>
                   </div>
-                  <h3 className="text-base font-bold text-[#1B381E]">
-                    Pediatric Emergency Helpline
-                  </h3>
-                  <p className="text-xs text-[#596D5C] leading-relaxed">
-                    Direct access to triage assistance for acute fevers, sudden allergic reactions, or infant pain.
+                  <button
+                    onClick={() => {
+                      setEmergencyResult(null);
+                      setEmergencyQuery("");
+                    }}
+                    className="text-xs text-[#8A1818] font-bold underline hover:text-[#5E0F0F] self-start sm:self-auto cursor-pointer"
+                  >
+                    নতুন প্রশ্ন লিখুন &times;
+                  </button>
+                </div>
+
+                {/* Summary */}
+                <p className="text-sm font-semibold text-[#3B4D3E] bg-[#FAF7F2] p-4 rounded-2xl border border-[#E8EDE5] leading-relaxed">
+                  {emergencyResult.summary}
+                </p>
+
+                {/* 2 Column Guidance: What to do NOW vs What NOT to do */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {/* Immediate Actions */}
+                  <div className="p-4 rounded-2xl bg-[#F4F9F1] border border-[#D7EACD] space-y-2">
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-[#2D5A22] flex items-center gap-1.5">
+                      <CheckCircle2 className="w-4 h-4 text-[#4D6D2E]" />
+                      <span>এই মুহূর্তে করণীয় (Do This Now)</span>
+                    </h4>
+                    <ul className="space-y-1.5 text-xs text-[#2F4432] leading-relaxed">
+                      {emergencyResult.actions.map((act, i) => (
+                        <li key={i} className="flex items-start gap-2">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#4D6D2E] mt-1.5 shrink-0" />
+                          <span>{act}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* What NOT to do */}
+                  <div className="p-4 rounded-2xl bg-[#FFF6F5] border border-[#F6D0CB] space-y-2">
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-[#9C2121] flex items-center gap-1.5">
+                      <AlertTriangle className="w-4 h-4 text-[#D32F2F]" />
+                      <span>যা কখনোই করবেন না (Do NOT Do)</span>
+                    </h4>
+                    <ul className="space-y-1.5 text-xs text-[#5C2323] leading-relaxed">
+                      {emergencyResult.doNot.map((item, i) => (
+                        <li key={i} className="flex items-start gap-2">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#D32F2F] mt-1.5 shrink-0" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                {/* Red Flag Hospital Signs */}
+                <div className="p-4 rounded-2xl bg-[#FFF3CD]/60 border border-[#FBE09C] space-y-1.5">
+                  <h4 className="text-xs font-bold text-[#8C5D07] flex items-center gap-1.5">
+                    <ShieldAlert className="w-4 h-4 text-[#C68202]" />
+                    <span>কখন তাৎক্ষণিক হাসপাতালে নিতে হবে (Hospital Red Flags)</span>
+                  </h4>
+                  <p className="text-xs text-[#6F4904] leading-relaxed">
+                    {emergencyResult.warnings.join(" • ")}
                   </p>
                 </div>
-                <div className="space-y-2 pt-3 border-t border-[#F5E6E3]">
+
+                {/* Direct 1-Tap Emergency Call Button */}
+                <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-[#F5E1DD]">
+                  <div className="text-xs text-[#596D5C] text-center sm:text-left">
+                    <p className="font-bold text-[#1B381E]">এখনও চিন্তিত? সরাসরি বিশেষজ্ঞের পরামর্শ নিন:</p>
+                    <p className="text-[11px] text-[#7A8E7C]">২৪ ঘণ্টা ফ্রি ও সম্পূর্ণ গোপনীয় পেডিয়াট্রিক ট্রায়াজ লাইন</p>
+                  </div>
                   <a
-                    href="tel:18002221222"
-                    className="w-full inline-flex items-center justify-center gap-2 bg-[#D32F2F] hover:bg-[#B71C1C] text-white py-3 rounded-full text-xs font-bold shadow-md shadow-red-700/20 transition-all hover:scale-[1.02]"
+                    href={emergencyResult.hotline}
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#D32F2F] hover:bg-[#B71C1C] text-white px-6 py-3 rounded-full text-xs font-bold shadow-md shadow-red-700/25 transition-all hover:scale-105 shrink-0"
                   >
                     <PhoneCall className="w-4 h-4" />
-                    <span>Call Hotline (1-Tap Dial)</span>
+                    <span>{emergencyResult.hotlineName}</span>
                   </a>
-                  <p className="text-[11px] text-center text-[#7F8D80] font-medium">
-                    Toll-Free &bull; 24/7 Available
-                  </p>
                 </div>
               </div>
-
-              {/* Card 2: Instant WhatsApp Chat */}
-              <div className="bg-white/95 rounded-3xl p-6 border border-[#E1ECD9] shadow-xs flex flex-col justify-between space-y-4">
-                <div className="space-y-2.5">
-                  <div className="w-11 h-11 rounded-2xl bg-emerald-50 text-[#1B803E] flex items-center justify-center border border-emerald-100">
-                    <MessageCircle className="w-5 h-5" />
-                  </div>
-                  <h3 className="text-base font-bold text-[#1B381E]">
-                    Instant WhatsApp Nurse Chat
-                  </h3>
-                  <p className="text-xs text-[#596D5C] leading-relaxed">
-                    Send photos of skin rashes, hives, or swelling for instant non-diagnostic assessment.
-                  </p>
-                </div>
-                <div className="space-y-2 pt-3 border-t border-[#E5EFE1]">
-                  <a
-                    href="https://wa.me/18005550199?text=Hello%20Piwva%20Nurse%2C%20I%20have%20an%20urgent%20baby%20health%20question"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full inline-flex items-center justify-center gap-2 bg-[#1EBE5D] hover:bg-[#169E4B] text-white py-3 rounded-full text-xs font-bold shadow-md shadow-emerald-700/20 transition-all hover:scale-[1.02]"
-                  >
-                    <MessageCircle className="w-4 h-4" />
-                    <span>Chat on WhatsApp (No Sign-in)</span>
-                  </a>
-                  <p className="text-[11px] text-center text-[#7F8D80] font-medium">
-                    Zero Account Required &bull; Direct Open
-                  </p>
-                </div>
-              </div>
-
-              {/* Card 3: Poison & Accidental Ingestion */}
-              <div className="bg-white/95 rounded-3xl p-6 border border-[#FBE0C9] shadow-xs flex flex-col justify-between space-y-4">
-                <div className="space-y-2.5">
-                  <div className="w-11 h-11 rounded-2xl bg-amber-50 text-[#C65102] flex items-center justify-center border border-amber-100">
-                    <ShieldAlert className="w-5 h-5" />
-                  </div>
-                  <h3 className="text-base font-bold text-[#1B381E]">
-                    Poison & Ingestion Control
-                  </h3>
-                  <p className="text-xs text-[#596D5C] leading-relaxed">
-                    Immediate emergency guidance if baby swallowed, licked, or touched any unknown substance.
-                  </p>
-                </div>
-                <div className="space-y-2 pt-3 border-t border-[#F8EADA]">
-                  <a
-                    href="tel:18002221222"
-                    className="w-full inline-flex items-center justify-center gap-2 bg-[#D9530F] hover:bg-[#B64106] text-white py-3 rounded-full text-xs font-bold shadow-md shadow-amber-800/20 transition-all hover:scale-[1.02]"
-                  >
-                    <ShieldAlert className="w-4 h-4" />
-                    <span>Call Poison Helpline</span>
-                  </a>
-                  <p className="text-[11px] text-center text-[#7F8D80] font-medium">
-                    National Poison Center &bull; Immediate Help
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Quick Urgent Callback Strip & Hospital Warning */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 pt-3">
-              {/* 1-Click Callback (No login required) */}
-              <div className="lg:col-span-7 bg-white/95 rounded-3xl p-6 sm:p-7 border border-[#F4CCC6] space-y-3">
-                <div className="space-y-1">
-                  <h4 className="text-base font-bold text-[#1B381E] flex items-center gap-2">
-                    <Clock className="w-4 h-4 text-[#D32F2F]" />
-                    <span>Request an Immediate 3-Minute Callback</span>
-                  </h4>
-                  <p className="text-xs text-[#596D5C] leading-relaxed">
-                    Just enter your phone number. A duty pediatric nurse will dial you back immediately &mdash; no login, no password, no email needed.
-                  </p>
-                </div>
-
-                {!urgentRequested ? (
-                  <form onSubmit={handleUrgentCallback} className="flex flex-col sm:flex-row gap-2 pt-2">
-                    <Input
-                      type="tel"
-                      required
-                      placeholder="Enter mobile number (e.g. +1 555 123 4567)"
-                      value={urgentPhone}
-                      onChange={(e) => setUrgentPhone(e.target.value)}
-                      className="bg-[#FAF7F2] border-[#E8C5C0] text-xs h-11 rounded-full text-[#1A3B22] flex-1"
-                    />
-                    <Button
-                      type="submit"
-                      className="bg-[#D32F2F] hover:bg-[#B71C1C] text-white rounded-full px-6 h-11 text-xs font-bold shrink-0 shadow-md shadow-red-700/20 cursor-pointer transition-all"
-                    >
-                      Call Me Urgently
-                    </Button>
-                  </form>
-                ) : (
-                  <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-xs text-emerald-900 flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
-                      <span>Priority callback scheduled for <strong>{urgentPhone}</strong>. Keep your phone line free!</span>
-                    </div>
-                    <button
-                      onClick={() => setUrgentRequested(false)}
-                      className="text-xs font-bold text-emerald-800 underline ml-2 shrink-0 cursor-pointer"
-                    >
-                      Reset
-                    </button>
-                  </div>
-                )}
-              </div>
-
-              {/* Red-Flag Hospital Warning Banner */}
-              <div className="lg:col-span-5 bg-[#8A1818] text-white rounded-3xl p-6 sm:p-7 space-y-3 flex flex-col justify-between shadow-md">
-                <div className="space-y-1.5">
-                  <div className="flex items-center gap-2 text-rose-200 text-xs font-bold">
-                    <AlertTriangle className="w-4 h-4 text-amber-300" />
-                    <span>WHEN TO GO DIRECTLY TO THE HOSPITAL</span>
-                  </div>
-                  <p className="text-xs text-rose-100 leading-relaxed">
-                    If baby has a fever over 100.4&deg;F (under 3 months), is struggling to breathe (rib retractions/grunting), or is unresponsive, do not wait &mdash; call <strong>999 / 911 / 112</strong> or go to your nearest Emergency Room immediately.
-                  </p>
-                </div>
-                <div className="pt-2 border-t border-rose-800/80 text-[11px] text-rose-200 flex items-center gap-1.5 font-semibold">
-                  <Activity className="w-3.5 h-3.5 text-amber-300 shrink-0" />
-                  <span>Always trust your parental intuition.</span>
-                </div>
-              </div>
-            </div>
+            )}
           </div>
         </section>
 
