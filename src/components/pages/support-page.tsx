@@ -12,6 +12,11 @@ import {
   Send,
   Heart,
   Calendar,
+  PhoneCall,
+  ShieldAlert,
+  AlertTriangle,
+  HeartPulse,
+  Activity,
 } from "lucide-react";
 import {
   Accordion,
@@ -49,6 +54,15 @@ export function SupportPage() {
     setSubmitted(true);
   };
 
+  const [urgentPhone, setUrgentPhone] = useState("");
+  const [urgentRequested, setUrgentRequested] = useState(false);
+
+  const handleUrgentCallback = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!urgentPhone.trim()) return;
+    setUrgentRequested(true);
+  };
+
   const supportFaqs = [
     {
       q: "When will the first batch of Piwva products be available to purchase?",
@@ -63,6 +77,10 @@ export function SupportPage() {
       a: "Yes! Every VIP waitlist family will receive complimentary sample miniatures with their launch order so you can perform a small 24-hour wrist patch test with complete peace of mind.",
     },
     {
+      q: "How does the Emergency Baby Health support work, and is any login required?",
+      a: "Our Emergency Baby Health support is 100% open with zero barriers: no login, no passwords, and no account creation. You can directly dial our pediatric triage line (1-tap call), open an instant WhatsApp chat with our nurse team, or request an emergency 3-minute callback.",
+    },
+    {
       q: "How can I collaborate or become a brand ambassador?",
       a: "We love partnering with thoughtful pediatric nurses, midwives, doulas, and parenting creators! Send a note to partners@piwva.com with your social links or nursery story.",
     },
@@ -72,7 +90,7 @@ export function SupportPage() {
     <div className="bg-[#FAF7F2] min-h-screen pt-28 pb-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
+        <div className="text-center max-w-3xl mx-auto space-y-4 mb-14">
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[#1B381E] tracking-tight leading-tight">
             We&apos;re Here for You & Your Little One
           </h1>
@@ -81,6 +99,194 @@ export function SupportPage() {
             Whether you have a question about our upcoming product launch, ingredient sourcing, or need gentle newborn skincare guidance &mdash; our team of parents and pediatric nurses is here.
           </p>
         </div>
+
+        {/* Urgent Baby Health Emergency Support Banner (No Login Required) */}
+        <section
+          id="emergency-support"
+          aria-label="Emergency Baby Health Support"
+          className="mb-16 rounded-[36px] bg-gradient-to-br from-[#FFF5F2] via-[#FDF8F5] to-[#FFF1ED] border-2 border-[#F6C8C1] p-6 sm:p-10 lg:p-12 shadow-xl shadow-red-950/5 relative overflow-hidden"
+        >
+          {/* Subtle warm rose ambient glow */}
+          <div className="absolute top-0 right-0 w-80 h-80 bg-rose-200/40 rounded-full blur-3xl -z-0 pointer-events-none" />
+
+          <div className="relative z-10 space-y-6">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-[#F7D4CF] pb-6">
+              <div className="space-y-1.5">
+                <div className="flex items-center gap-3">
+                  <div className="w-11 h-11 rounded-2xl bg-[#D32F2F] text-white flex items-center justify-center shadow-md shadow-red-600/30 animate-pulse">
+                    <HeartPulse className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h2 className="text-2xl sm:text-3xl font-black text-[#8A1818] tracking-tight">
+                      Emergency Baby Health Support
+                    </h2>
+                    <p className="text-xs sm:text-sm font-semibold text-[#A83232]">
+                      No login, password, or account needed &bull; Immediate 1-tap direct contact
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-100 border border-red-200 text-red-900 text-xs font-bold shadow-2xs">
+                  <span className="w-2.5 h-2.5 rounded-full bg-red-600 animate-ping" />
+                  <span>24/7 Live Triage Active</span>
+                </div>
+              </div>
+            </div>
+
+            {/* 3 Instant Action Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+              {/* Card 1: 1-Tap Emergency Call */}
+              <div className="bg-white/95 rounded-3xl p-6 border border-[#F5C7C1] shadow-xs flex flex-col justify-between space-y-4">
+                <div className="space-y-2.5">
+                  <div className="w-11 h-11 rounded-2xl bg-red-50 text-[#D32F2F] flex items-center justify-center border border-red-100">
+                    <PhoneCall className="w-5 h-5" />
+                  </div>
+                  <h3 className="text-base font-bold text-[#1B381E]">
+                    Pediatric Emergency Helpline
+                  </h3>
+                  <p className="text-xs text-[#596D5C] leading-relaxed">
+                    Direct access to triage assistance for acute fevers, sudden allergic reactions, or infant pain.
+                  </p>
+                </div>
+                <div className="space-y-2 pt-3 border-t border-[#F5E6E3]">
+                  <a
+                    href="tel:18002221222"
+                    className="w-full inline-flex items-center justify-center gap-2 bg-[#D32F2F] hover:bg-[#B71C1C] text-white py-3 rounded-full text-xs font-bold shadow-md shadow-red-700/20 transition-all hover:scale-[1.02]"
+                  >
+                    <PhoneCall className="w-4 h-4" />
+                    <span>Call Hotline (1-Tap Dial)</span>
+                  </a>
+                  <p className="text-[11px] text-center text-[#7F8D80] font-medium">
+                    Toll-Free &bull; 24/7 Available
+                  </p>
+                </div>
+              </div>
+
+              {/* Card 2: Instant WhatsApp Chat */}
+              <div className="bg-white/95 rounded-3xl p-6 border border-[#E1ECD9] shadow-xs flex flex-col justify-between space-y-4">
+                <div className="space-y-2.5">
+                  <div className="w-11 h-11 rounded-2xl bg-emerald-50 text-[#1B803E] flex items-center justify-center border border-emerald-100">
+                    <MessageCircle className="w-5 h-5" />
+                  </div>
+                  <h3 className="text-base font-bold text-[#1B381E]">
+                    Instant WhatsApp Nurse Chat
+                  </h3>
+                  <p className="text-xs text-[#596D5C] leading-relaxed">
+                    Send photos of skin rashes, hives, or swelling for instant non-diagnostic assessment.
+                  </p>
+                </div>
+                <div className="space-y-2 pt-3 border-t border-[#E5EFE1]">
+                  <a
+                    href="https://wa.me/18005550199?text=Hello%20Piwva%20Nurse%2C%20I%20have%20an%20urgent%20baby%20health%20question"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full inline-flex items-center justify-center gap-2 bg-[#1EBE5D] hover:bg-[#169E4B] text-white py-3 rounded-full text-xs font-bold shadow-md shadow-emerald-700/20 transition-all hover:scale-[1.02]"
+                  >
+                    <MessageCircle className="w-4 h-4" />
+                    <span>Chat on WhatsApp (No Sign-in)</span>
+                  </a>
+                  <p className="text-[11px] text-center text-[#7F8D80] font-medium">
+                    Zero Account Required &bull; Direct Open
+                  </p>
+                </div>
+              </div>
+
+              {/* Card 3: Poison & Accidental Ingestion */}
+              <div className="bg-white/95 rounded-3xl p-6 border border-[#FBE0C9] shadow-xs flex flex-col justify-between space-y-4">
+                <div className="space-y-2.5">
+                  <div className="w-11 h-11 rounded-2xl bg-amber-50 text-[#C65102] flex items-center justify-center border border-amber-100">
+                    <ShieldAlert className="w-5 h-5" />
+                  </div>
+                  <h3 className="text-base font-bold text-[#1B381E]">
+                    Poison & Ingestion Control
+                  </h3>
+                  <p className="text-xs text-[#596D5C] leading-relaxed">
+                    Immediate emergency guidance if baby swallowed, licked, or touched any unknown substance.
+                  </p>
+                </div>
+                <div className="space-y-2 pt-3 border-t border-[#F8EADA]">
+                  <a
+                    href="tel:18002221222"
+                    className="w-full inline-flex items-center justify-center gap-2 bg-[#D9530F] hover:bg-[#B64106] text-white py-3 rounded-full text-xs font-bold shadow-md shadow-amber-800/20 transition-all hover:scale-[1.02]"
+                  >
+                    <ShieldAlert className="w-4 h-4" />
+                    <span>Call Poison Helpline</span>
+                  </a>
+                  <p className="text-[11px] text-center text-[#7F8D80] font-medium">
+                    National Poison Center &bull; Immediate Help
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Quick Urgent Callback Strip & Hospital Warning */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 pt-3">
+              {/* 1-Click Callback (No login required) */}
+              <div className="lg:col-span-7 bg-white/95 rounded-3xl p-6 sm:p-7 border border-[#F4CCC6] space-y-3">
+                <div className="space-y-1">
+                  <h4 className="text-base font-bold text-[#1B381E] flex items-center gap-2">
+                    <Clock className="w-4 h-4 text-[#D32F2F]" />
+                    <span>Request an Immediate 3-Minute Callback</span>
+                  </h4>
+                  <p className="text-xs text-[#596D5C] leading-relaxed">
+                    Just enter your phone number. A duty pediatric nurse will dial you back immediately &mdash; no login, no password, no email needed.
+                  </p>
+                </div>
+
+                {!urgentRequested ? (
+                  <form onSubmit={handleUrgentCallback} className="flex flex-col sm:flex-row gap-2 pt-2">
+                    <Input
+                      type="tel"
+                      required
+                      placeholder="Enter mobile number (e.g. +1 555 123 4567)"
+                      value={urgentPhone}
+                      onChange={(e) => setUrgentPhone(e.target.value)}
+                      className="bg-[#FAF7F2] border-[#E8C5C0] text-xs h-11 rounded-full text-[#1A3B22] flex-1"
+                    />
+                    <Button
+                      type="submit"
+                      className="bg-[#D32F2F] hover:bg-[#B71C1C] text-white rounded-full px-6 h-11 text-xs font-bold shrink-0 shadow-md shadow-red-700/20 cursor-pointer transition-all"
+                    >
+                      Call Me Urgently
+                    </Button>
+                  </form>
+                ) : (
+                  <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-xs text-emerald-900 flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
+                      <span>Priority callback scheduled for <strong>{urgentPhone}</strong>. Keep your phone line free!</span>
+                    </div>
+                    <button
+                      onClick={() => setUrgentRequested(false)}
+                      className="text-xs font-bold text-emerald-800 underline ml-2 shrink-0 cursor-pointer"
+                    >
+                      Reset
+                    </button>
+                  </div>
+                )}
+              </div>
+
+              {/* Red-Flag Hospital Warning Banner */}
+              <div className="lg:col-span-5 bg-[#8A1818] text-white rounded-3xl p-6 sm:p-7 space-y-3 flex flex-col justify-between shadow-md">
+                <div className="space-y-1.5">
+                  <div className="flex items-center gap-2 text-rose-200 text-xs font-bold">
+                    <AlertTriangle className="w-4 h-4 text-amber-300" />
+                    <span>WHEN TO GO DIRECTLY TO THE HOSPITAL</span>
+                  </div>
+                  <p className="text-xs text-rose-100 leading-relaxed">
+                    If baby has a fever over 100.4&deg;F (under 3 months), is struggling to breathe (rib retractions/grunting), or is unresponsive, do not wait &mdash; call <strong>999 / 911 / 112</strong> or go to your nearest Emergency Room immediately.
+                  </p>
+                </div>
+                <div className="pt-2 border-t border-rose-800/80 text-[11px] text-rose-200 flex items-center gap-1.5 font-semibold">
+                  <Activity className="w-3.5 h-3.5 text-amber-300 shrink-0" />
+                  <span>Always trust your parental intuition.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* 3 Contact Channels */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">

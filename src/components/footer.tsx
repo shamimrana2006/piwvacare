@@ -110,6 +110,12 @@ export function Footer() {
                   Parent Care & Support
                 </Link>
               </li>
+              <li>
+                <Link href="/support#emergency-support" className="text-[#C62828] font-bold hover:underline flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-red-600 animate-pulse" />
+                  Emergency Baby Health
+                </Link>
+              </li>
             </ul>
           </div>
 
