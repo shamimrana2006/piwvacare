@@ -1,6 +1,12 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import {
+  CARE_PROGRAMS,
+  FIRST_90_DAYS_DATA,
+} from "@/data/care-guide-days";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -8,201 +14,40 @@ import {
   Clock,
   CheckCircle2,
   Heart,
-  Droplets,
-  Sun,
-  Moon,
-  Shield,
-  HelpCircle,
   ArrowRight,
   BookOpen,
+  Filter,
   Sparkles,
+  Layers,
 } from "lucide-react";
 import { DoodleHeart } from "@/components/decorations";
 
 export function CareGuidePage() {
-  const [selectedPhase, setSelectedPhase] = useState(0);
-  const [selectedDay, setSelectedDay] = useState(0);
+  const [selectedPhaseFilter, setSelectedPhaseFilter] = useState<string>("all");
+  const [searchDayQuery, setSearchDayQuery] = useState("");
 
-  const roadmapPhases = [
-    {
-      phaseId: "phase-1",
-      range: "Days 1 – 14",
-      title: "The Golden Arrival",
-      badge: "Newborn Nesting",
-      themeColor: "from-[#F3EDE2] to-[#EBE2D3]",
-      summary:
-        "Preserving your baby's natural vernix shield, gentle cord care, and first sponge bath rituals.",
-      sessions: [
-        {
-          day: "Days 1 – 3",
-          topic: "Vernix Caseosa Preservation & First Warm Touch",
-          subtitle: "Why baby skin needs gentle patience, not immediate soap.",
-          guidance: [
-            "Do not rush to scrub away the white vernix coating. It is nature's most advanced antimicrobial moisturizing barrier.",
-            "Use only clean, lukewarm water (approx 37°C / 98.6°F) and an organic soft cotton cloth for gentle face and diaper area wipes.",
-            "Keep baths under 5 minutes and avoid immersing the umbilical area until the stump naturally falls off.",
-          ],
-          normalCheck:
-            "Normal: Mild redness around feet or hands, slight peeling as baby transitions from amniotic fluid to dry air.",
-          doctorNote:
-            "Notify pediatrician if baby develops a high fever (above 38°C / 100.4°F) or yellow pus around eyes.",
-        },
-        {
-          day: "Days 4 – 7",
-          topic: "Umbilical Cord Stump Care & Dry Fold Protection",
-          subtitle: "Keeping the cord area clean, dry, and irritation-free.",
-          guidance: [
-            "Fold the diaper waistband downward so it does not rub or trap moisture against the umbilical stump.",
-            "Keep the area clean and completely dry. Sponge bathe only; let air dry thoroughly before dressing.",
-            "Never pull or tug at the stump, even if it looks attached by a thread. It will detach safely on its own.",
-          ],
-          normalCheck:
-            "Normal: A tiny drop of dried dark blood as the stump naturally separates is completely typical.",
-          doctorNote:
-            "Notify pediatrician if the skin around the stump becomes fiery red, hot to touch, or emits an unpleasant odor.",
-        },
-        {
-          day: "Days 8 – 14",
-          topic: "Natural Newborn Skin Peeling & Gentle Oat Hydration",
-          subtitle: "Nourishing the deeper skin layers as outer layers shed.",
-          guidance: [
-            "Almost all healthy full-term newborns experience dry peeling skin on wrists, ankles, and tummy during week two.",
-            "Apply a pea-sized amount of fragrance-free, colloidal oat baby moisture lotion right after lukewarm sponge wipes.",
-            "Gently massage with clean warm hands using light, rhythmic downward strokes to soothe dry spots.",
-          ],
-          normalCheck:
-            "Normal: Flaking dry skin without itching or discomfort is part of newborn skin maturation.",
-          doctorNote:
-            "Contact your pediatrician if skin cracks deeply, bleeds, or baby shows signs of eczema distress.",
-        },
-      ],
-    },
-    {
-      phaseId: "phase-2",
-      range: "Days 15 – 30",
-      title: "The Gentle Rhythm",
-      badge: "Weeks 3 & 4",
-      themeColor: "from-[#EAF2E4] to-[#DEEAD5]",
-      summary:
-        "Establishing calming bedtime sleep cues, skin-to-skin bonding, and gentle cradle cap care.",
-      sessions: [
-        {
-          day: "Days 15 – 21",
-          topic: "Evening Sleep Cues & Rhythmic Skin-to-Skin Touch",
-          subtitle: "Signaling emotional security and deep restorative rest.",
-          guidance: [
-            "Implement a predictable 3-step evening wind-down: lukewarm bath (5 mins), gentle soothing lotion, and dimmed soft light.",
-            "Practice 15 minutes of skin-to-skin contact against your chest. It stabilizes infant heart rate and body temperature.",
-            "Sing or speak in a soft rhythmic whisper while gently applying lotion down baby's legs and tummy.",
-          ],
-          normalCheck:
-            "Normal: Frequent night awakenings for nursing or feeding; sleep cycles are still developing circadian rhythms.",
-          doctorNote:
-            "Consult your pediatrician if baby is unusually lethargic or refuses two consecutive feeding sessions.",
-        },
-        {
-          day: "Days 22 – 30",
-          topic: "Cradle Cap Awareness & Natural Scalp Care",
-          subtitle: "Soothing flaky scalp patches with plant lipids.",
-          guidance: [
-            "Cradle cap (infantile seborrheic dermatitis) is caused by harmless natural sebum production, not poor hygiene.",
-            "Warm a few drops of pure plant lipid or gentle baby lotion into your palms and massage gently onto the scalp 15 minutes before bath.",
-            "During bath time, use a soft silicone baby scalp brush or gentle cloth to loosen flakes in gentle circular motions. Never pick with fingernails.",
-          ],
-          normalCheck:
-            "Normal: Yellowish or crusty scales that don't bother or itch baby.",
-          doctorNote:
-            "Call your pediatrician if scales become inflamed, weep fluid, or spread down past the eyebrows and ears.",
-        },
-      ],
-    },
-    {
-      phaseId: "phase-3",
-      range: "Days 31 – 60",
-      title: "Awakening & Senses",
-      badge: "Month 2",
-      themeColor: "from-[#F3EDE2] to-[#E9DEC $\\div$ C]",
-      summary:
-        "5-minute infant massage routines, tummy time skin protection, and saliva rash barrier shielding.",
-      sessions: [
-        {
-          day: "Days 31 – 45",
-          topic: "5-Minute Calming Infant Massage Routine",
-          subtitle: "Stimulating neurological development and easing gas/colic.",
-          guidance: [
-            "Perform infant massage when baby is calm and alert, at least 45 minutes after feeding.",
-            "Warm lotion in your hands. Use gentle 'I Love You' clockwise strokes across the abdomen to ease digestive trapped gas.",
-            "Gently stroke down the arms, open the tiny palms, and gently roll down each leg with relaxed loving eye contact.",
-          ],
-          normalCheck:
-            "Normal: Baby smiling, cooing, or relaxed breathing during soothing touch.",
-          doctorNote:
-            "If baby arches back in severe discomfort or cries consistently for over 3 hours daily, consult your pediatrician regarding colic.",
-        },
-        {
-          day: "Days 46 – 60",
-          topic: "Tummy Time Comfort & Drool Rash Shielding",
-          subtitle: "Shielding cheeks and neck folds from moisture chafing.",
-          guidance: [
-            "As baby begins early tummy time, saliva and friction can cause redness around the chin and neck folds.",
-            "Gently dab drool with a clean cloth — never rub harshly.",
-            "Apply a breathable thin layer of protective oat moisture lotion to cheeks and neck before tummy sessions to create a moisture shield.",
-          ],
-          normalCheck:
-            "Normal: Mild flushing on cheeks after active tummy effort.",
-          doctorNote:
-            "Seek guidance if rash becomes pimply, blistered, or infected.",
-        },
-      ],
-    },
-    {
-      phaseId: "phase-4",
-      range: "Days 61 – 90",
-      title: "Blooming Confidence",
-      badge: "Month 3",
-      themeColor: "from-[#EAF2E4] to-[#DCEBD4]",
-      summary:
-        "Outdoor air protection, seasonal barrier care, and celebrating the 90-day skin milestone.",
-      sessions: [
-        {
-          day: "Days 61 – 75",
-          topic: "Outdoor Air, Weather Barrier & Wind Protection",
-          subtitle: "Shielding fragile infant skin from drafts and temperature swings.",
-          guidance: [
-            "Before taking baby in a stroller on breezy or dry days, apply a gentle protective layer of moisture lotion to exposed cheeks.",
-            "Dress baby in one more layer than you would wear comfortably yourself, preferring breathable 100% natural fibers.",
-            "Keep baby shaded from direct ultraviolet sunlight, using canopy shields and lightweight cotton sun hats.",
-          ],
-          normalCheck:
-            "Normal: Slight cheek rosiness in cool weather that dissipates once indoors.",
-          doctorNote:
-            "Notify doctor if baby develops hives, swelling, or extreme sun sensitivity.",
-        },
-        {
-          day: "Days 76 – 90",
-          topic: "The 90-Day Skin Barrier Milestone Celebration",
-          subtitle: "Celebrating your baby's strengthened acid mantle and healthy skin.",
-          guidance: [
-            "By Day 90, your baby's skin acid mantle has strengthened significantly. Continue consistent daily rituals to maintain barrier resilience.",
-            "Transition into daily post-bath hydration routines to maintain deep lipid balance through teething and crawling stages.",
-            "Celebrate the profound bonding journey you and your baby have nurtured together over these first three months!",
-          ],
-          normalCheck:
-            "Normal: Smooth, resilient, soft baby skin with natural self-hydrating capacity.",
-          doctorNote:
-            "Schedule your baby's 3-month wellness pediatric checkup to review growth and milestone charts.",
-        },
-      ],
-    },
-  ];
+  const filteredDays = FIRST_90_DAYS_DATA.filter((d) => {
+    const matchesPhase =
+      selectedPhaseFilter === "all" ||
+      (selectedPhaseFilter === "phase-1" && d.dayNumber <= 14) ||
+      (selectedPhaseFilter === "phase-2" && d.dayNumber > 14 && d.dayNumber <= 30) ||
+      (selectedPhaseFilter === "phase-3" && d.dayNumber > 30 && d.dayNumber <= 60) ||
+      (selectedPhaseFilter === "phase-4" && d.dayNumber > 60);
 
-  const currentPhase = roadmapPhases[selectedPhase];
-  const activeSession = currentPhase.sessions[selectedDay] || currentPhase.sessions[0];
+    const matchesSearch =
+      searchDayQuery === "" ||
+      d.title.toLowerCase().includes(searchDayQuery.toLowerCase()) ||
+      d.subtitle.toLowerCase().includes(searchDayQuery.toLowerCase()) ||
+      `day ${d.dayNumber}`.includes(searchDayQuery.toLowerCase()) ||
+      `d${d.dayNumber}`.includes(searchDayQuery.toLowerCase());
+
+    return matchesPhase && matchesSearch;
+  });
 
   return (
     <div className="bg-[#FAF7F2] min-h-screen pt-28 pb-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
+        {/* Header Hero */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
           <div className="inline-flex items-center gap-2">
             <Badge
@@ -210,211 +55,226 @@ export function CareGuidePage() {
               className="bg-[#E7EFE3] text-[#345928] border border-[#D5E5CB] px-4 py-1.5 rounded-full text-xs font-semibold shadow-2xs flex items-center gap-1.5"
             >
               <Calendar className="w-3.5 h-3.5 text-[#4D6D2E]" />
-              The First 90 Days • Gentle Milestone Journey
+              The Piwva Baby Care Library
             </Badge>
           </div>
 
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[#1B381E] tracking-tight leading-tight">
-            Baby&apos;s First 90 Days: What to Do
+            Gentle Developmental Pathways
           </h1>
 
           <p className="text-base sm:text-lg text-[#596D5C] max-w-2xl mx-auto leading-relaxed">
-            Day-by-day compassionate rituals, pediatric skin science, and newborn comfort techniques. Zero overwhelm &mdash; just gentle, loving guidance for every stage of your baby&apos;s fourth trimester.
+            Evidence-based infant care roadmaps crafted with certified pediatric dermatologists. Every day has its own dedicated page with step-by-step guidance, normal checks, and loving rituals.
           </p>
         </div>
 
-        {/* 4 Phase Navigation Tabs */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
-          {roadmapPhases.map((phase, idx) => {
-            const isCurrent = selectedPhase === idx;
-            return (
-              <button
-                key={phase.phaseId}
-                type="button"
-                onClick={() => {
-                  setSelectedPhase(idx);
-                  setSelectedDay(0);
-                }}
-                className={`p-5 rounded-3xl border text-left transition-all duration-300 cursor-pointer flex flex-col justify-between ${
-                  isCurrent
-                    ? "bg-[#4D6D2E] text-white border-[#4D6D2E] shadow-md shadow-[#4D6D2E]/20 -translate-y-1"
-                    : "bg-white text-[#1A3B22] border-[#DEE8D8] hover:border-[#4D6D2E]"
-                }`}
-              >
-                <div>
-                  <div className="flex items-center justify-between text-[11px] font-bold uppercase tracking-wider mb-2">
-                    <span className={isCurrent ? "text-[#D9ECCF]" : "text-[#4D6D2E]"}>
-                      {phase.range}
-                    </span>
-                    <span className="opacity-80">Phase 0{idx + 1}</span>
-                  </div>
-                  <h3 className="text-base font-bold leading-snug">
-                    {phase.title}
-                  </h3>
-                </div>
+        {/* Available Programs Showcase (Multiple Guides) */}
+        <div className="mb-20">
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <span className="text-xs font-bold uppercase tracking-wider text-[#4D6D2E]">
+                Comprehensive Care Library
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1B381E]">
+                Explore Our Developmental Roadmaps
+              </h2>
+            </div>
+            <span className="text-xs text-[#7A8E7C] font-semibold hidden sm:inline">
+              {CARE_PROGRAMS.length} Developmental Roadmaps
+            </span>
+          </div>
 
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {CARE_PROGRAMS.map((prog) => {
+              const isActive = prog.status === "active";
+              return (
                 <div
-                  className={`mt-4 pt-3 border-t text-xs flex items-center justify-between font-semibold ${
-                    isCurrent ? "border-white/20 text-[#E0EED6]" : "border-[#EEF4EA] text-[#637765]"
+                  key={prog.id}
+                  className={`rounded-3xl border p-6 flex flex-col justify-between transition-all ${
+                    isActive
+                      ? "bg-white border-[#4D6D2E] shadow-md shadow-[#4D6D2E]/10 ring-1 ring-[#4D6D2E]/20"
+                      : "bg-white/70 border-[#DEE8D8] opacity-90 hover:bg-white"
                   }`}
                 >
-                  <span>{phase.sessions.length} Day Sessions</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </div>
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Phase Summary Bar */}
-        <div className="bg-[#FAF7F2] p-5 rounded-3xl border border-[#DFE8DA] flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
-          <div>
-            <span className="text-xs font-bold uppercase tracking-wider text-[#4D6D2E]">
-              Currently Exploring: {currentPhase.range} &mdash; {currentPhase.badge}
-            </span>
-            <p className="text-sm text-[#596D5C] mt-0.5">{currentPhase.summary}</p>
-          </div>
-
-          {/* Session Day Pills */}
-          <div className="flex flex-wrap gap-2 shrink-0">
-            {currentPhase.sessions.map((sess, idx) => (
-              <button
-                key={idx}
-                type="button"
-                onClick={() => setSelectedDay(idx)}
-                className={`px-4 py-2 rounded-full text-xs font-semibold transition-all cursor-pointer ${
-                  selectedDay === idx
-                    ? "bg-[#4D6D2E] text-white shadow-2xs"
-                    : "bg-white text-[#526955] border border-[#D7E5D0] hover:bg-[#EBF3E7]"
-                }`}
-              >
-                {sess.day}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Detailed Session Display Card */}
-        <div className="bg-white rounded-3xl p-6 sm:p-12 border border-[#DEE8D8] shadow-xs mb-16">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
-            {/* Left Column: Guidance & Daily Steps */}
-            <div className="lg:col-span-8 space-y-6">
-              <div className="space-y-2">
-                <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#4D6D2E] bg-[#EBF3E7] px-3 py-1 rounded-full">
-                  <Clock className="w-3.5 h-3.5" />
-                  Session Focus: {activeSession.day}
-                </div>
-
-                <h2 className="text-2xl sm:text-4xl font-extrabold text-[#1B381E] leading-tight">
-                  {activeSession.topic}
-                </h2>
-
-                <p className="text-base text-[#596D5C] font-medium">
-                  {activeSession.subtitle}
-                </p>
-              </div>
-
-              {/* Step-by-Step Parent Guidance */}
-              <div className="space-y-4 pt-2">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-[#1B381E]">
-                  Daily Recommended Steps & Rituals:
-                </h4>
-                {activeSession.guidance.map((step, i) => (
-                  <div
-                    key={i}
-                    className="flex items-start gap-3.5 p-4 rounded-2xl bg-[#FAF7F2] border border-[#E5EFE1]"
-                  >
-                    <div className="w-7 h-7 rounded-full bg-[#4D6D2E] text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
-                      0{i + 1}
+                  <div className="space-y-3">
+                    <div className="relative aspect-4/3 w-full rounded-2xl overflow-hidden bg-[#F5EDE1] mb-4">
+                      <Image
+                        src={prog.image}
+                        alt={prog.title}
+                        fill
+                        className="object-cover"
+                      />
+                      <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-md px-2.5 py-0.5 rounded-full text-[10px] font-bold text-[#1A3B22]">
+                        {prog.duration}
+                      </div>
+                      {isActive && (
+                        <div className="absolute top-3 right-3 bg-[#4D6D2E] text-white px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider">
+                          Active Now
+                        </div>
+                      )}
                     </div>
-                    <p className="text-sm text-[#273D2A] leading-relaxed">
-                      {step}
+
+                    <span
+                      className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${
+                        isActive
+                          ? "bg-[#EBF3E7] text-[#325826]"
+                          : "bg-[#F3EDE2] text-[#69563A]"
+                      }`}
+                    >
+                      {prog.badge}
+                    </span>
+
+                    <h3 className="text-lg font-bold text-[#1B381E] leading-snug">
+                      {prog.title}
+                    </h3>
+
+                    <p className="text-xs text-[#596D5C] leading-relaxed">
+                      {prog.description}
                     </p>
                   </div>
-                ))}
-              </div>
-            </div>
 
-            {/* Right Column: Pediatrician Normal Check & Warnings */}
-            <div className="lg:col-span-4 space-y-5">
-              {/* Normal Check Box */}
-              <div className="p-5 rounded-2xl bg-[#F4F9F1] border border-[#DCEAD6] space-y-2">
-                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#2F5323]">
-                  <CheckCircle2 className="w-4 h-4 text-[#4D6D2E]" />
-                  What Is Normal
+                  <div className="pt-5 mt-4 border-t border-[#EEF5EA]">
+                    {isActive ? (
+                      <Link
+                        href="/care-guide/day-1"
+                        className="w-full inline-flex items-center justify-center gap-2 bg-[#4D6D2E] hover:bg-[#3D5624] text-white py-2.5 rounded-full text-xs font-semibold shadow-xs transition-colors"
+                      >
+                        <span>Start Day 1 Routine</span>
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </Link>
+                    ) : (
+                      <div className="text-center py-2 text-[11px] font-semibold text-[#8C9E8E] bg-[#FAF7F2] rounded-full">
+                        In Preparation &bull; Coming Soon
+                      </div>
+                    )}
+                  </div>
                 </div>
-                <p className="text-xs text-[#526654] leading-relaxed">
-                  {activeSession.normalCheck}
-                </p>
-              </div>
-
-              {/* Doctor Note Box */}
-              <div className="p-5 rounded-2xl bg-[#FFF9F2] border border-[#F4E3D0] space-y-2">
-                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#9C5D1F]">
-                  <HelpCircle className="w-4 h-4 text-[#D97706]" />
-                  When to Call Your Doctor
-                </div>
-                <p className="text-xs text-[#7A5B3E] leading-relaxed">
-                  {activeSession.doctorNote}
-                </p>
-              </div>
-
-              {/* Gentle Encouragement */}
-              <div className="p-5 rounded-2xl bg-[#FAF7F2] border border-[#E1ECE0] text-center space-y-2">
-                <div className="w-10 h-10 rounded-full bg-[#EBF3E7] text-[#4D6D2E] mx-auto flex items-center justify-center">
-                  <Heart className="w-5 h-5 fill-[#4D6D2E]/20" />
-                </div>
-                <h5 className="text-xs font-bold text-[#1B381E]">
-                  You Are Doing Wonderfully
-                </h5>
-                <p className="text-[11px] text-[#596D5C] leading-snug">
-                  Every baby is completely unique. Trust your instincts, embrace the cuddles, and take each day at your own gentle pace.
-                </p>
-              </div>
-            </div>
+              );
+            })}
           </div>
         </div>
 
-        {/* 90-Day Skin Philosophy Pillars */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-          <div className="bg-white p-6 rounded-3xl border border-[#DFEBD9] space-y-2">
-            <div className="w-10 h-10 rounded-2xl bg-[#EBF3E7] text-[#4D6D2E] flex items-center justify-center mb-3">
-              <Shield className="w-5 h-5" />
+        {/* Featured Program: The First 90 Days Hub & Day Browser */}
+        <div className="bg-white rounded-[36px] sm:rounded-[48px] p-6 sm:p-12 lg:p-16 border border-[#DEE8D8] shadow-sm mb-16">
+          <div className="max-w-3xl space-y-3 mb-10">
+            <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#4D6D2E] bg-[#EBF3E7] px-3 py-1 rounded-full">
+              <BookOpen className="w-3.5 h-3.5" />
+              Featured Flagship Pathway
             </div>
-            <h4 className="text-base font-bold text-[#1B381E]">
-              Preserve The Acid Mantle
-            </h4>
-            <p className="text-xs text-[#596D5C] leading-relaxed">
-              Newborn skin takes approximately 90 days to establish its protective acidic pH (5.5). We avoid harsh foaming agents to protect this natural armor.
+
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#1B381E] leading-tight">
+              The First 90 Days: Complete Daily Roadmap
+            </h2>
+
+            <p className="text-sm sm:text-base text-[#596D5C] leading-relaxed">
+              Every single day from birth to 3 months has a dedicated page with step-by-step guidance on how to care for your baby&apos;s skin, cord, bath, sleep, and emotional bonding.
             </p>
+
+            <div className="pt-2 flex flex-wrap items-center gap-3">
+              <Link
+                href="/care-guide/day-1"
+                className="inline-flex items-center gap-2 bg-[#4D6D2E] hover:bg-[#3D5624] text-white px-6 py-3 rounded-full text-xs sm:text-sm font-semibold shadow-md shadow-[#4D6D2E]/20 transition-all"
+              >
+                <span>Begin with Day 1: Vernix & Gentle Touch</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+
+              <span className="text-xs text-[#7A8E7C]">
+                Or select any day below to jump straight to its guidance
+              </span>
+            </div>
           </div>
 
-          <div className="bg-white p-6 rounded-3xl border border-[#DFEBD9] space-y-2">
-            <div className="w-10 h-10 rounded-2xl bg-[#EBF3E7] text-[#4D6D2E] flex items-center justify-center mb-3">
-              <Droplets className="w-5 h-5" />
+          {/* Phase Filter Tabs & Search Bar */}
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-[#E7EFE2] mb-8">
+            <div className="flex flex-wrap gap-2">
+              {[
+                { id: "all", label: "All 90 Days" },
+                { id: "phase-1", label: "Phase 1: Days 1–14 (Newborn)" },
+                { id: "phase-2", label: "Phase 2: Days 15–30 (Rhythm)" },
+                { id: "phase-3", label: "Phase 3: Days 31–60 (Senses)" },
+                { id: "phase-4", label: "Phase 4: Days 61–90 (Resilience)" },
+              ].map((tab) => (
+                <button
+                  key={tab.id}
+                  type="button"
+                  onClick={() => setSelectedPhaseFilter(tab.id)}
+                  className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
+                    selectedPhaseFilter === tab.id
+                      ? "bg-[#4D6D2E] text-white shadow-2xs"
+                      : "bg-[#FAF7F2] text-[#556958] hover:bg-[#EBF3E7]"
+                  }`}
+                >
+                  {tab.label}
+                </button>
+              ))}
             </div>
-            <h4 className="text-base font-bold text-[#1B381E]">
-              Hydration Within 3 Minutes
-            </h4>
-            <p className="text-xs text-[#596D5C] leading-relaxed">
-              Water evaporates quickly from fragile skin. Applying oat-infused moisture lotion immediately after patting dry seals in essential water molecules.
-            </p>
+
+            <div className="w-full md:w-64">
+              <input
+                type="text"
+                placeholder="Search Day (e.g. Day 14, cradle cap...)"
+                value={searchDayQuery}
+                onChange={(e) => setSearchDayQuery(e.target.value)}
+                className="w-full h-10 px-4 rounded-full border border-[#D6E4CF] bg-[#FAF7F2] text-xs text-[#1A3B22] placeholder:text-[#889B8A] focus:outline-none focus:ring-2 focus:ring-[#4D6D2E]"
+              />
+            </div>
           </div>
 
-          <div className="bg-white p-6 rounded-3xl border border-[#DFEBD9] space-y-2">
-            <div className="w-10 h-10 rounded-2xl bg-[#EBF3E7] text-[#4D6D2E] flex items-center justify-center mb-3">
-              <Heart className="w-5 h-5" />
-            </div>
-            <h4 className="text-base font-bold text-[#1B381E]">
-              The Power of Loving Touch
-            </h4>
-            <p className="text-xs text-[#596D5C] leading-relaxed">
-              Clinical studies demonstrate that gentle daily massage lowers infant cortisol (stress levels) by 32% and encourages deeper, restorative sleep patterns.
-            </p>
+          {/* 90-Day Interactive Cards Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {filteredDays.map((day) => (
+              <Link
+                key={day.dayNumber}
+                href={`/care-guide/${day.slug}`}
+                className="group p-5 rounded-2xl bg-[#FAF7F2] border border-[#DEE8D8] hover:bg-white hover:border-[#4D6D2E] hover:shadow-md transition-all flex flex-col justify-between"
+              >
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-black text-[#4D6D2E] bg-white border border-[#D6E5CF] px-2.5 py-0.5 rounded-full">
+                      Day {day.dayNumber}
+                    </span>
+                    <span className="text-[11px] text-[#7A8E7C] flex items-center gap-1 font-medium">
+                      <Clock className="w-3 h-3 text-[#4D6D2E]" />
+                      {day.readTime}
+                    </span>
+                  </div>
+
+                  <h4 className="text-base font-bold text-[#1B381E] leading-snug group-hover:text-[#4D6D2E] transition-colors">
+                    {day.title}
+                  </h4>
+
+                  <p className="text-xs text-[#596D5C] line-clamp-2 leading-relaxed">
+                    {day.subtitle}
+                  </p>
+                </div>
+
+                <div className="pt-4 mt-3 border-t border-[#E8EFE3] flex items-center justify-between text-xs font-semibold text-[#4D6D2E]">
+                  <span>Open Day {day.dayNumber} Guidance</span>
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </Link>
+            ))}
           </div>
+
+          {filteredDays.length === 0 && (
+            <div className="text-center py-12 space-y-2">
+              <p className="font-semibold text-sm text-[#1B381E]">
+                No day matched your filter &ldquo;{searchDayQuery}&rdquo;
+              </p>
+              <button
+                onClick={() => {
+                  setSelectedPhaseFilter("all");
+                  setSearchDayQuery("");
+                }}
+                className="text-xs text-[#4D6D2E] font-semibold underline"
+              >
+                Reset all filters
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>
   );
 }
-
