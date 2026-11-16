@@ -32,7 +32,7 @@ export function AboutPage() {
             </Badge>
           </div>
 
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[#1B381E] tracking-tight leading-tight font-title">
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[#1B381E] tracking-tight leading-tight">
             Crafted with Motherly Love, Guided by Science
           </h1>
 
@@ -62,7 +62,7 @@ export function AboutPage() {
               <span className="text-xs font-bold uppercase tracking-wider text-[#4D6D2E] bg-[#EBF3E7] px-3 py-1 rounded-full">
                 Why We Started
               </span>
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-[#1B381E] leading-tight font-title">
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-[#1B381E] leading-tight">
                 Skin That Is 30% Thinner Deserves 100% Purity
               </h2>
               <p className="text-sm sm:text-base text-[#596D5C] leading-relaxed">
@@ -75,13 +75,13 @@ export function AboutPage() {
 
             <div className="grid grid-cols-2 gap-4 pt-2">
               <div className="p-4 rounded-2xl bg-white border border-[#DFE8D9]">
-                <h4 className="text-xl font-bold text-[#1B381E] font-title">1,400+</h4>
+                <h4 className="text-xl font-bold text-[#1B381E]">1,400+</h4>
                 <p className="text-xs text-[#596D5C] mt-0.5">
                   Banned toxic ingredients excluded forever
                 </p>
               </div>
               <div className="p-4 rounded-2xl bg-white border border-[#DFE8D9]">
-                <h4 className="text-xl font-bold text-[#1B381E] font-title">pH 5.5</h4>
+                <h4 className="text-xl font-bold text-[#1B381E]">pH 5.5</h4>
                 <p className="text-xs text-[#596D5C] mt-0.5">
                   Precisely balanced for delicate acid mantle
                 </p>
@@ -96,7 +96,7 @@ export function AboutPage() {
             <span className="text-xs font-bold uppercase tracking-wider text-[#4D6D2E] bg-[#EBF3E7] px-3 py-1 rounded-full">
               What Defines Us
             </span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1B381E] font-title">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1B381E]">
               Our 4 Pillars of Gentle Care
             </h2>
           </div>
@@ -104,7 +104,7 @@ export function AboutPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             <div className="p-6 rounded-2xl bg-[#FAF7F2] border border-[#E3EDDD] space-y-2">
               <Leaf className="w-8 h-8 text-[#4D6D2E] mb-2" />
-              <h3 className="text-base font-bold text-[#1B381E] font-title">
+              <h3 className="text-base font-bold text-[#1B381E]">
                 Pure Plant Lipids
               </h3>
               <p className="text-xs text-[#596D5C] leading-relaxed">
@@ -114,7 +114,7 @@ export function AboutPage() {
 
             <div className="p-6 rounded-2xl bg-[#FAF7F2] border border-[#E3EDDD] space-y-2">
               <ShieldCheck className="w-8 h-8 text-[#4D6D2E] mb-2" />
-              <h3 className="text-base font-bold text-[#1B381E] font-title">
+              <h3 className="text-base font-bold text-[#1B381E]">
                 Zero Harsh Fillers
               </h3>
               <p className="text-xs text-[#596D5C] leading-relaxed">
@@ -124,7 +124,7 @@ export function AboutPage() {
 
             <div className="p-6 rounded-2xl bg-[#FAF7F2] border border-[#E3EDDD] space-y-2">
               <Users className="w-8 h-8 text-[#4D6D2E] mb-2" />
-              <h3 className="text-base font-bold text-[#1B381E] font-title">
+              <h3 className="text-base font-bold text-[#1B381E]">
                 Pediatric Tested
               </h3>
               <p className="text-xs text-[#596D5C] leading-relaxed">
@@ -134,7 +134,7 @@ export function AboutPage() {
 
             <div className="p-6 rounded-2xl bg-[#FAF7F2] border border-[#E3EDDD] space-y-2">
               <Award className="w-8 h-8 text-[#4D6D2E] mb-2" />
-              <h3 className="text-base font-bold text-[#1B381E] font-title">
+              <h3 className="text-base font-bold text-[#1B381E]">
                 Eco & Recyclable
               </h3>
               <p className="text-xs text-[#596D5C] leading-relaxed">
@@ -153,7 +153,7 @@ export function AboutPage() {
             </span>
           </div>
 
-          <h3 className="text-2xl sm:text-3xl font-extrabold text-[#1B381E] font-title">
+          <h3 className="text-2xl sm:text-3xl font-extrabold text-[#1B381E]">
             &ldquo;Every baby deserves to be held in gentle comfort.&rdquo;
           </h3>
 

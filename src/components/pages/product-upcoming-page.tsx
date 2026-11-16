@@ -65,10 +65,10 @@ export function ProductUpcomingPage() {
               </div>
 
               <div className="space-y-2">
-                <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-[#1B381E] tracking-tight leading-tight font-title">
+                <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-[#1B381E] tracking-tight leading-tight">
                   Upcoming
                 </h1>
-                <p className="text-xl sm:text-2xl font-bold text-[#2A442E] font-title">
+                <p className="text-xl sm:text-2xl font-bold text-[#2A442E]">
                   Something Pure & Gentle is on the Way
                 </p>
               </div>
@@ -200,7 +200,7 @@ export function ProductUpcomingPage() {
             <div className="w-10 h-10 rounded-2xl bg-[#EBF3E7] text-[#4D6D2E] flex items-center justify-center mb-3">
               <ShieldCheck className="w-5 h-5" />
             </div>
-            <h3 className="text-base font-bold text-[#1B381E] font-title">
+            <h3 className="text-base font-bold text-[#1B381E]">
               Pediatrician Formulated
             </h3>
             <p className="text-xs text-[#596D5C] leading-relaxed">
@@ -212,7 +212,7 @@ export function ProductUpcomingPage() {
             <div className="w-10 h-10 rounded-2xl bg-[#EBF3E7] text-[#4D6D2E] flex items-center justify-center mb-3">
               <Leaf className="w-5 h-5" />
             </div>
-            <h3 className="text-base font-bold text-[#1B381E] font-title">
+            <h3 className="text-base font-bold text-[#1B381E]">
               100% Clean Botanicals
             </h3>
             <p className="text-xs text-[#596D5C] leading-relaxed">
@@ -224,7 +224,7 @@ export function ProductUpcomingPage() {
             <div className="w-10 h-10 rounded-2xl bg-[#EBF3E7] text-[#4D6D2E] flex items-center justify-center mb-3">
               <Heart className="w-5 h-5" />
             </div>
-            <h3 className="text-base font-bold text-[#1B381E] font-title">
+            <h3 className="text-base font-bold text-[#1B381E]">
               Small-Batch Craftsmanship
             </h3>
             <p className="text-xs text-[#596D5C] leading-relaxed">

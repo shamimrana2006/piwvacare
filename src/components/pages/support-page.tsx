@@ -84,7 +84,7 @@ export function SupportPage() {
             </Badge>
           </div>
 
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[#1B381E] tracking-tight leading-tight font-title">
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[#1B381E] tracking-tight leading-tight">
             We&apos;re Here for You & Your Little One
           </h1>
 
@@ -100,7 +100,7 @@ export function SupportPage() {
               <div className="w-12 h-12 rounded-2xl bg-[#EBF3E7] text-[#4D6D2E] flex items-center justify-center">
                 <Mail className="w-6 h-6" />
               </div>
-              <h3 className="text-lg font-bold text-[#1B381E] font-title">
+              <h3 className="text-lg font-bold text-[#1B381E]">
                 Email Care Team
               </h3>
               <p className="text-xs text-[#596D5C] leading-relaxed">
@@ -120,7 +120,7 @@ export function SupportPage() {
               <div className="w-12 h-12 rounded-2xl bg-[#EBF3E7] text-[#4D6D2E] flex items-center justify-center">
                 <MessageCircle className="w-6 h-6" />
               </div>
-              <h3 className="text-lg font-bold text-[#1B381E] font-title">
+              <h3 className="text-lg font-bold text-[#1B381E]">
                 VIP Launch Concierge
               </h3>
               <p className="text-xs text-[#596D5C] leading-relaxed">
@@ -140,7 +140,7 @@ export function SupportPage() {
               <div className="w-12 h-12 rounded-2xl bg-[#EBF3E7] text-[#4D6D2E] flex items-center justify-center">
                 <Clock className="w-6 h-6" />
               </div>
-              <h3 className="text-lg font-bold text-[#1B381E] font-title">
+              <h3 className="text-lg font-bold text-[#1B381E]">
                 Response Hours
               </h3>
               <p className="text-xs text-[#596D5C] leading-relaxed">
@@ -160,7 +160,7 @@ export function SupportPage() {
             {!submitted ? (
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="space-y-1 mb-4">
-                  <h3 className="text-2xl font-bold text-[#1B381E] font-title">
+                  <h3 className="text-2xl font-bold text-[#1B381E]">
                     Send Us a Message
                   </h3>
                   <p className="text-xs text-[#596D5C]">
@@ -269,7 +269,7 @@ export function SupportPage() {
                 <div className="w-16 h-16 rounded-full bg-[#EBF3E7] text-[#4D6D2E] mx-auto flex items-center justify-center">
                   <CheckCircle2 className="w-8 h-8 text-[#4D6D2E]" />
                 </div>
-                <h3 className="text-2xl font-bold text-[#1B381E] font-title">
+                <h3 className="text-2xl font-bold text-[#1B381E]">
                   Message Safely Received!
                 </h3>
                 <p className="text-xs sm:text-sm text-[#596D5C] max-w-sm mx-auto">
@@ -292,7 +292,7 @@ export function SupportPage() {
               <span className="text-xs font-bold uppercase tracking-wider text-[#4D6D2E] bg-[#EBF3E7] px-3 py-1 rounded-full">
                 Instant Answers
               </span>
-              <h3 className="text-2xl font-bold text-[#1B381E] font-title">
+              <h3 className="text-2xl font-bold text-[#1B381E]">
                 Common Support Questions
               </h3>
             </div>

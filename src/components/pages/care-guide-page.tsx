@@ -214,7 +214,7 @@ export function CareGuidePage() {
             </Badge>
           </div>
 
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[#1B381E] tracking-tight leading-tight font-title">
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[#1B381E] tracking-tight leading-tight">
             Baby&apos;s First 90 Days: What to Do
           </h1>
 
@@ -248,7 +248,7 @@ export function CareGuidePage() {
                     </span>
                     <span className="opacity-80">Phase 0{idx + 1}</span>
                   </div>
-                  <h3 className="text-base font-bold leading-snug font-title">
+                  <h3 className="text-base font-bold leading-snug">
                     {phase.title}
                   </h3>
                 </div>
@@ -305,7 +305,7 @@ export function CareGuidePage() {
                   Session Focus: {activeSession.day}
                 </div>
 
-                <h2 className="text-2xl sm:text-4xl font-extrabold text-[#1B381E] leading-tight font-title">
+                <h2 className="text-2xl sm:text-4xl font-extrabold text-[#1B381E] leading-tight">
                   {activeSession.topic}
                 </h2>
 
@@ -381,7 +381,7 @@ export function CareGuidePage() {
             <div className="w-10 h-10 rounded-2xl bg-[#EBF3E7] text-[#4D6D2E] flex items-center justify-center mb-3">
               <Shield className="w-5 h-5" />
             </div>
-            <h4 className="text-base font-bold text-[#1B381E] font-title">
+            <h4 className="text-base font-bold text-[#1B381E]">
               Preserve The Acid Mantle
             </h4>
             <p className="text-xs text-[#596D5C] leading-relaxed">
@@ -393,7 +393,7 @@ export function CareGuidePage() {
             <div className="w-10 h-10 rounded-2xl bg-[#EBF3E7] text-[#4D6D2E] flex items-center justify-center mb-3">
               <Droplets className="w-5 h-5" />
             </div>
-            <h4 className="text-base font-bold text-[#1B381E] font-title">
+            <h4 className="text-base font-bold text-[#1B381E]">
               Hydration Within 3 Minutes
             </h4>
             <p className="text-xs text-[#596D5C] leading-relaxed">
@@ -405,7 +405,7 @@ export function CareGuidePage() {
             <div className="w-10 h-10 rounded-2xl bg-[#EBF3E7] text-[#4D6D2E] flex items-center justify-center mb-3">
               <Heart className="w-5 h-5" />
             </div>
-            <h4 className="text-base font-bold text-[#1B381E] font-title">
+            <h4 className="text-base font-bold text-[#1B381E]">
               The Power of Loving Touch
             </h4>
             <p className="text-xs text-[#596D5C] leading-relaxed">

@@ -43,7 +43,7 @@ export function OurPromisePage() {
             </Badge>
           </div>
 
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[#1B381E] tracking-tight leading-tight font-title">
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[#1B381E] tracking-tight leading-tight">
             Our Unbreakable Promise to Your Family
           </h1>
 
@@ -73,7 +73,7 @@ export function OurPromisePage() {
               <span className="text-xs font-bold uppercase tracking-wider text-[#4D6D2E] bg-[#EBF3E7] px-3 py-1 rounded-full">
                 The Touch of Trust
               </span>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1B381E] font-title">
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1B381E]">
                 A Softer Tomorrow for Every Newborn
               </h2>
               <p className="text-sm sm:text-base text-[#596D5C] leading-relaxed">
@@ -103,7 +103,7 @@ export function OurPromisePage() {
             <span className="text-xs font-bold uppercase tracking-wider text-[#4D6D2E] bg-[#EBF3E7] px-3 py-1 rounded-full">
               Standard of Excellence
             </span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1B381E] font-title">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1B381E]">
               How Piwva Compares
             </h2>
             <p className="text-sm text-[#596D5C]">

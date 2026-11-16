@@ -128,7 +128,7 @@ export function ProductFeatured({
 
             {/* Heading */}
             <div className="space-y-3">
-              <h2 className="text-3xl sm:text-4xl lg:text-[46px] font-extrabold text-[#1B381E] leading-tight tracking-tight font-title">
+              <h2 className="text-3xl sm:text-4xl lg:text-[46px] font-extrabold text-[#1B381E] leading-tight tracking-tight">
                 piwva Baby Moisture Lotion
               </h2>
               <p className="text-base sm:text-lg text-[#556958] leading-relaxed max-w-lg">
