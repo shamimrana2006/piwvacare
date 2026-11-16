@@ -81,34 +81,34 @@ export function Footer() {
             </h4>
             <ul className="space-y-2 text-sm text-[#596D5C]">
               <li>
-                <a href="#hero" className="hover:text-[#4D6D2E] transition-colors">
+                <Link href="/" className="hover:text-[#4D6D2E] transition-colors">
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#product" className="hover:text-[#4D6D2E] transition-colors">
-                  Piwva Baby Moisture Lotion
-                </a>
+                <Link href="/about" className="hover:text-[#4D6D2E] transition-colors">
+                  About Our Story
+                </Link>
               </li>
               <li>
-                <a href="#why-piwva" className="hover:text-[#4D6D2E] transition-colors">
-                  Why Choose Piwva
-                </a>
+                <Link href="/product" className="hover:text-[#4D6D2E] transition-colors">
+                  Upcoming Products (Waitlist)
+                </Link>
               </li>
               <li>
-                <a href="#care-guide" className="hover:text-[#4D6D2E] transition-colors">
-                  Gentle Daily Care Guide
-                </a>
+                <Link href="/care-guide" className="hover:text-[#4D6D2E] transition-colors">
+                  Baby&apos;s First 90 Days Care Guide
+                </Link>
               </li>
               <li>
-                <a href="#promise" className="hover:text-[#4D6D2E] transition-colors">
-                  Our Promise
-                </a>
+                <Link href="/our-promise" className="hover:text-[#4D6D2E] transition-colors">
+                  Our Sacred Promise
+                </Link>
               </li>
               <li>
-                <a href="#faq" className="hover:text-[#4D6D2E] transition-colors">
-                  Frequently Asked Questions
-                </a>
+                <Link href="/support" className="hover:text-[#4D6D2E] transition-colors">
+                  Parent Care & Support
+                </Link>
               </li>
             </ul>
           </div>

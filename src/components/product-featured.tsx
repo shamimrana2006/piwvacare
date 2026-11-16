@@ -2,7 +2,17 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { ArrowRight, Leaf, Droplets, ShieldCheck, Check, ShoppingBag, Heart } from "lucide-react";
+import Link from "next/link";
+import {
+  ArrowRight,
+  Leaf,
+  Droplets,
+  ShieldCheck,
+  Check,
+  Bell,
+  Clock,
+  Heart,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { DoodleHeart } from "@/components/decorations";
@@ -17,13 +27,6 @@ export function ProductFeatured({
   onAddToCart,
 }: ProductFeaturedProps) {
   const [selectedSize, setSelectedSize] = useState("250ml");
-  const [added, setAdded] = useState(false);
-
-  const handleAdd = () => {
-    onAddToCart();
-    setAdded(true);
-    setTimeout(() => setAdded(false), 2000);
-  };
 
   const featureItems = [
     {
@@ -52,14 +55,14 @@ export function ProductFeatured({
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
-          {/* Left Column: Product Image on Pedestal with Bunny & "New Launch" badge */}
+          {/* Left Column: Product Image on Pedestal with Bunny & "Upcoming" badge */}
           <div className="lg:col-span-6 relative flex justify-center">
             {/* Soft cream curved backdrop matching design */}
             <div className="relative w-full max-w-[480px] rounded-[48px] bg-gradient-to-b from-[#F6F0E6] to-[#EFE7D8] p-4 sm:p-6 border border-[#E9DFCF] shadow-lg shadow-[#2D4525]/5">
-              {/* "New Launch" Circular Olive Green Badge */}
+              {/* "Upcoming Debut" Circular Olive Green Badge */}
               <div className="absolute top-6 right-8 sm:right-10 z-20 w-18 h-18 sm:w-20 sm:h-20 rounded-full bg-[#4D6D2E] text-white flex flex-col items-center justify-center font-bold text-center shadow-lg shadow-[#4D6D2E]/30 animate-pulse-subtle">
-                <span className="text-xs sm:text-sm font-semibold tracking-wide">New</span>
-                <span className="text-xs sm:text-sm font-bold tracking-tight">Launch</span>
+                <span className="text-[11px] sm:text-xs font-semibold tracking-wide">Upcoming</span>
+                <span className="text-xs sm:text-sm font-bold tracking-tight">Debut</span>
               </div>
 
               {/* Main Product Photography */}
@@ -73,7 +76,7 @@ export function ProductFeatured({
                 />
               </div>
 
-              {/* Quick Size Toggle & Quick Add Bar under the photo */}
+              {/* Size preview & Waitlist action under photo */}
               <div className="mt-4 pt-3 border-t border-[#DFD3C2]/70 flex items-center justify-between gap-3">
                 <div className="flex items-center gap-1.5 bg-white/80 p-1 rounded-full border border-[#DCE8D4]">
                   {["150ml", "250ml", "500ml"].map((size) => (
@@ -93,20 +96,13 @@ export function ProductFeatured({
                 </div>
 
                 <Button
-                  onClick={handleAdd}
+                  onClick={onAddToCart}
                   size="sm"
                   variant="outline"
                   className="rounded-full text-xs font-semibold border-[#4D6D2E] text-[#2F5223] hover:bg-[#4D6D2E] hover:text-white transition-colors"
                 >
-                  {added ? (
-                    <>
-                      <Check className="w-3.5 h-3.5" /> Added!
-                    </>
-                  ) : (
-                    <>
-                      <ShoppingBag className="w-3.5 h-3.5 text-[#4D6D2E]" /> + Add $24
-                    </>
-                  )}
+                  <Bell className="w-3.5 h-3.5" />
+                  VIP Waitlist
                 </Button>
               </div>
             </div>
@@ -120,28 +116,27 @@ export function ProductFeatured({
             </div>
 
             {/* Pill Badge */}
-            <div className="inline-flex items-center">
+            <div className="inline-flex items-center gap-2">
               <Badge
                 variant="soft"
                 className="bg-[#E7EFE3] text-[#345928] border border-[#D5E5CB] px-4 py-1.5 rounded-full text-xs font-semibold gap-1.5 shadow-2xs"
               >
-                <Leaf className="w-3.5 h-3.5 text-[#4D6D2E]" />
-                Introducing
+                <Clock className="w-3.5 h-3.5 text-[#4D6D2E]" />
+                Upcoming Launch • In Final Clinical Verification
               </Badge>
             </div>
 
             {/* Heading */}
             <div className="space-y-3">
-              <h2 className="text-3xl sm:text-4xl lg:text-[46px] font-extrabold text-[#1B381E] leading-tight tracking-tight">
+              <h2 className="text-3xl sm:text-4xl lg:text-[46px] font-extrabold text-[#1B381E] leading-tight tracking-tight font-title">
                 piwva Baby Moisture Lotion
               </h2>
               <p className="text-base sm:text-lg text-[#556958] leading-relaxed max-w-lg">
-                Keep your baby&apos;s skin soft, smooth and healthy &mdash;
-                naturally.
+                Currently in small-batch bottling. Formulated with pure colloidal oat lipids to keep your baby&apos;s skin soft, smooth and healthy &mdash; naturally.
               </p>
             </div>
 
-            {/* Feature List items with custom circular icons */}
+            {/* Feature List items */}
             <div className="space-y-4 pt-2">
               {featureItems.map((item, idx) => {
                 const IconComponent = item.icon;
@@ -166,25 +161,24 @@ export function ProductFeatured({
               })}
             </div>
 
-            {/* CTA Button "Know More ➔" */}
-            <div className="pt-2 flex items-center gap-4">
+            {/* Action Bar */}
+            <div className="pt-2 flex flex-wrap items-center gap-4">
               <Button
                 onClick={onKnowMore}
                 className="bg-[#4D6D2E] hover:bg-[#3D5724] text-white rounded-full px-7 py-3.5 h-auto text-sm sm:text-base font-semibold shadow-md shadow-[#4D6D2E]/25 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 flex items-center gap-3 cursor-pointer group"
               >
-                <span>Know More</span>
+                <span>Know More & Formula</span>
                 <span className="w-7 h-7 rounded-full bg-white text-[#4D6D2E] flex items-center justify-center group-hover:translate-x-0.5 transition-transform">
                   <ArrowRight className="w-4 h-4 stroke-[2.5]" />
                 </span>
               </Button>
 
-              <button
-                type="button"
-                onClick={onAddToCart}
-                className="text-sm font-semibold text-[#4D6D2E] hover:text-[#2F5223] underline underline-offset-4 decoration-2 cursor-pointer transition-colors px-2 py-1"
+              <Link
+                href="/product"
+                className="text-sm font-semibold text-[#4D6D2E] hover:text-[#2F5223] underline underline-offset-4 decoration-2 transition-colors px-2 py-1"
               >
-                Add directly to bag ($24)
-              </button>
+                View all upcoming creations &rarr;
+              </Link>
             </div>
           </div>
         </div>
@@ -192,4 +186,3 @@ export function ProductFeatured({
     </section>
   );
 }
-
