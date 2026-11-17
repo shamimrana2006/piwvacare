@@ -6,6 +6,8 @@ import { DayGuideDetailView } from "./day-guide-detail-view";
 import { FIRST_90_DAYS_DATA, getDayBySlug, getDayGuide } from "@/data/care-guide-days";
 import type { Metadata } from "next";
 
+export const instant = false;
+
 export async function generateStaticParams() {
   return FIRST_90_DAYS_DATA.map((d) => ({
     day: d.slug,
