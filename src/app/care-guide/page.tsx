@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { StayUpdatedModal } from "@/components/stay-updated-modal";
@@ -27,7 +28,10 @@ import {
   ArrowLeft,
   Edit3,
   Trash2,
+  Sparkles,
+  BookOpen,
 } from "lucide-react";
+import { BookCinematic } from "./book-cinematic";
 
 const DAY_CARD_IMAGES = [
   "/images/hero-baby.jpg",
@@ -51,6 +55,7 @@ interface DayNote {
 }
 
 export default function CareGuideRoute() {
+  const router = useRouter();
   const [stayUpdatedOpen, setStayUpdatedOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
@@ -165,113 +170,31 @@ export default function CareGuideRoute() {
 
       <div className="bg-[#FAF7F2] min-h-screen pt-28 pb-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* VIEW 1: Main Care Guide Library (Courses / Pathways Overview) */}
+          {/* VIEW 1: Main Care Guide Library (Interactive 3D Book & Upcoming Course) */}
           {!selectedCourse && (
             <div>
               {/* Header Hero */}
-              <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
+              <div className="text-center max-w-3xl mx-auto space-y-4 mb-12">
                 <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[#1B381E] tracking-tight leading-tight">
                   Gentle Developmental Pathways
                 </h1>
 
                 <p className="text-base sm:text-lg text-[#596D5C] max-w-2xl mx-auto leading-relaxed">
                   Evidence-based infant care roadmaps crafted with certified pediatric dermatologists.
-                  Select any pathway below to enter its full daily care curriculum.
+                  Open our interactive 90-Day Book to explore day-by-day rituals, skin biology, and gentle guidance.
                 </p>
               </div>
 
-              {/* Available Programs Grid */}
+              {/* 3D Interactive Book + Upcoming Course Showcase */}
               <div className="mb-20">
-                <div className="flex items-center justify-between mb-8">
-                  <div>
-                    <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1B381E]">
-                      Explore Our Developmental Roadmaps
-                    </h2>
-                  </div>
-                  <span className="text-xs text-[#7A8E7C] font-semibold hidden sm:inline">
-                    {CARE_PROGRAMS.length} Developmental Roadmaps
-                  </span>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                  {CARE_PROGRAMS.map((prog) => {
-                    const isActive = prog.status === "active";
-                    return (
-                      <div
-                        key={prog.id}
-                        onClick={() => {
-                          if (isActive) {
-                            setSelectedCourse("first-90-days");
-                            window.scrollTo({ top: 0, behavior: "smooth" });
-                          }
-                        }}
-                        className={`rounded-3xl border p-6 flex flex-col justify-between transition-all duration-300 ${
-                          isActive
-                            ? "bg-white border-[#4D6D2E] shadow-md shadow-[#4D6D2E]/10 ring-1 ring-[#4D6D2E]/20 cursor-pointer hover:shadow-xl hover:-translate-y-1"
-                            : "bg-white/70 border-[#DEE8D8] opacity-90"
-                        }`}
-                      >
-                        <div className="space-y-3">
-                          <div className="relative aspect-4/3 w-full rounded-2xl overflow-hidden bg-[#F5EDE1] mb-4">
-                            <Image
-                              src={prog.image}
-                              alt={prog.title}
-                              fill
-                              className="object-cover"
-                            />
-                            <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-md px-2.5 py-0.5 rounded-full text-[10px] font-bold text-[#1A3B22]">
-                              {prog.duration}
-                            </div>
-                            {isActive && (
-                              <div className="absolute top-3 right-3 bg-[#4D6D2E] text-white px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider">
-                                Active Now
-                              </div>
-                            )}
-                          </div>
-
-                          <span
-                            className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${
-                              isActive
-                                ? "bg-[#EBF3E7] text-[#325826]"
-                                : "bg-[#F3EDE2] text-[#69563A]"
-                            }`}
-                          >
-                            {prog.badge}
-                          </span>
-
-                          <h3 className="text-lg font-bold text-[#1B381E] leading-snug">
-                            {prog.title}
-                          </h3>
-
-                          <p className="text-xs text-[#596D5C] leading-relaxed">
-                            {prog.description}
-                          </p>
-                        </div>
-
-                        <div className="pt-5 mt-4 border-t border-[#EEF5EA]">
-                          {isActive ? (
-                            <button
-                              type="button"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                setSelectedCourse("first-90-days");
-                                window.scrollTo({ top: 0, behavior: "smooth" });
-                              }}
-                              className="w-full inline-flex items-center justify-center gap-2 bg-[#4D6D2E] hover:bg-[#3D5624] text-white py-2.5 rounded-full text-xs font-bold shadow-xs transition-colors cursor-pointer"
-                            >
-                              <span>Enter 90-Day Pathway</span>
-                              <ArrowRight className="w-3.5 h-3.5" />
-                            </button>
-                          ) : (
-                            <div className="text-center py-2 text-[11px] font-semibold text-[#8C9E8E] bg-[#FAF7F2] rounded-full">
-                              In Preparation &bull; Coming Soon
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
+                <BookCinematic
+                  isOpen={selectedCourse === "first-90-days"}
+                  onOpenRoadmap={() => {
+                    setSelectedCourse("first-90-days");
+                    window.scrollTo({ top: 320, behavior: "smooth" });
+                  }}
+                  onCloseBook={() => setSelectedCourse(null)}
+                />
               </div>
             </div>
           )}
@@ -363,7 +286,7 @@ export default function CareGuideRoute() {
                   </div>
                 </div>
 
-                {/* 90-Day Interactive Cards Grid with IMAGES & EDIT OPTIONS */}
+                {/* 90-Day Interactive Cards Grid with IMAGES & EDIT OPTIONS (Click anywhere to navigate) */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                   {filteredDays.map((day) => {
                     const cardImg = getDayCardImage(day.dayNumber, day.image);
@@ -372,7 +295,16 @@ export default function CareGuideRoute() {
                     return (
                       <div
                         key={day.dayNumber}
-                        className="group rounded-3xl bg-[#FAF7F2] border border-[#DEE8D8] hover:bg-white hover:border-[#4D6D2E] hover:shadow-lg transition-all duration-300 flex flex-col justify-between overflow-hidden"
+                        onClick={() => router.push(`/care-guide/${day.slug}`)}
+                        role="button"
+                        tabIndex={0}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            router.push(`/care-guide/${day.slug}`);
+                          }
+                        }}
+                        className="group rounded-3xl bg-[#FAF7F2] border border-[#DEE8D8] hover:bg-white hover:border-[#4D6D2E] hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between overflow-hidden cursor-pointer text-left"
                       >
                         <div>
                           {/* Card Image Banner */}
@@ -425,20 +357,20 @@ export default function CareGuideRoute() {
                           </div>
                         </div>
 
-                        {/* Footer Actions: Open Day & Edit Note */}
+                        {/* Footer Actions: Click anywhere navigates; button edits note */}
                         <div className="p-5 pt-0 border-t border-[#E8EFE3]/80 flex items-center justify-between gap-2 mt-2">
-                          <Link
-                            href={`/care-guide/${day.slug}`}
-                            className="inline-flex items-center gap-1 text-xs font-bold text-[#4D6D2E] hover:text-[#2F4D20] transition-colors"
-                          >
+                          <div className="inline-flex items-center gap-1 text-xs font-bold text-[#4D6D2E] group-hover:text-[#2F4D20] transition-colors">
                             <span>Open Guidance</span>
-                            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                          </Link>
+                            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1.5 transition-transform" />
+                          </div>
 
                           <button
                             type="button"
-                            onClick={() => handleOpenEdit(day)}
-                            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white hover:bg-[#EBF3E7] text-[#4F6753] hover:text-[#2F4D20] border border-[#DCE7D6] text-xs font-semibold shadow-2xs transition-all cursor-pointer"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleOpenEdit(day);
+                            }}
+                            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white hover:bg-[#EBF3E7] text-[#4F6753] hover:text-[#2F4D20] border border-[#DCE7D6] text-xs font-semibold shadow-2xs transition-all cursor-pointer relative z-10"
                             title="Edit Day Routine / Add Personal Notes"
                           >
                             <Edit3 className="w-3 h-3 text-[#4D6D2E]" />

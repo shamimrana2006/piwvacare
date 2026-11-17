@@ -104,3 +104,66 @@ h1, h2, h3, h4, h5, h6 {
 .animate-pulse-subtle {
   animation: heart-pulse 3s ease-in-out infinite;
 }
+
+/* 3D Book & Cinematic Animation Styles */
+.perspective-1200 {
+  perspective: 1200px;
+}
+.perspective-1600 {
+  perspective: 1600px;
+}
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Realistic 3D paper stack shadow */
+.book-paper-stack {
+  box-shadow: 
+    1px 1px 0 #F1ECE1,
+    2px 2px 0 #E8E0D2,
+    3px 3px 0 #DFD5C4,
+    4px 4px 0 #D6CBB7,
+    5px 5px 0 #CDC0AA,
+    6px 6px 0 #C4B59D,
+    7px 7px 0 #BBAA90,
+    8px 8px 0 #B29F83,
+    10px 10px 16px rgba(27, 56, 30, 0.18),
+    16px 16px 28px rgba(27, 56, 30, 0.12);
+}
+
+.book-spine-gradient {
+  background: linear-gradient(
+    90deg,
+    #0E1F10 0%,
+    #1B381E 20%,
+    #2E532B 45%,
+    #1B381E 70%,
+    #0E1F10 100%
+  );
+}
+
+/* Gold shimmer effect */
+@keyframes gold-shine {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-gold-shine {
+  background: linear-gradient(
+    90deg,
+    rgba(218, 165, 32, 0) 0%,
+    rgba(255, 235, 160, 0.6) 50%,
+    rgba(218, 165, 32, 0) 100%
+  );
+  background-size: 200% 100%;
+  animation: gold-shine 3s ease-in-out infinite;
+}
+

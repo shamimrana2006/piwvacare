@@ -32,42 +32,22 @@ export interface CareProgram {
 export const CARE_PROGRAMS: CareProgram[] = [
   {
     "id": "first-90-days",
-    "title": "The First 90 Days: A Gentle Daily Pathway",
-    "badge": "Core Newborn Milestone",
-    "duration": "Days 1 to 90 (Daily Dedicated Pages)",
-    "description": "Day-by-day compassionate rituals, pediatric skin science, and newborn comfort techniques. Zero overwhelm \u2014 just pure loving steps for the fourth trimester.",
+    "title": "The First 90 Days: Complete Daily Roadmap",
+    "badge": "Interactive Book Course",
+    "duration": "90 Daily Dedicated Pages",
+    "description": "Evidence-based infant care journal crafted with certified pediatric dermatologists. Every single day from birth to 3 months with daily rituals, skin biology, and step-by-step guidance.",
     "image": "/images/baby-footprints.jpg",
     "totalDays": 90,
     "status": "active"
   },
   {
-    "id": "months-4-to-6",
-    "title": "Months 4 to 6: Exploring & Teething Comfort",
-    "badge": "Upcoming Milestone",
-    "duration": "60 Daily Sessions",
-    "description": "Guiding your baby through sitting up, first solid tastes, teething drool barriers, and sensory tactile exploration.",
+    "id": "upcoming-months-4-to-6",
+    "title": "Months 4 to 6: Exploring, Teething & Solid Tastes",
+    "badge": "Upcoming Course",
+    "duration": "60 Daily Guides • Coming Soon",
+    "description": "Guiding parents through rolling over, tactile sensory exploration, teething drool barriers, and gentle first solid meal routines.",
     "image": "/images/hero-baby.jpg",
     "totalDays": 60,
-    "status": "upcoming"
-  },
-  {
-    "id": "bedtime-sleep-rituals",
-    "title": "Peaceful Bedtime & Restorative Sleep Rituals",
-    "badge": "Specialized Pathway",
-    "duration": "30 Nightly Guides",
-    "description": "Evidence-backed infant massage sequences, circadian light tuning, and gentle scent-free wind-down routines for deeper sleep.",
-    "image": "/images/promise-hands.jpg",
-    "totalDays": 30,
-    "status": "upcoming"
-  },
-  {
-    "id": "sensitive-skin-shield",
-    "title": "Sensitive Skin & Environmental Shielding",
-    "badge": "Clinical Skin Care",
-    "duration": "21 Daily Protocols",
-    "description": "Pediatric dermatologist protocols to manage flare-ups, cradle cap, extreme dryness, and environmental triggers.",
-    "image": "/images/lotion-sand-nature.jpg",
-    "totalDays": 21,
     "status": "upcoming"
   }
 ];
