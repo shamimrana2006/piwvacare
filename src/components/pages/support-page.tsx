@@ -351,10 +351,6 @@ export function SupportPage() {
           <div className="relative z-10 max-w-3xl mx-auto space-y-6">
             {/* Header */}
             <div className="text-center space-y-2">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-red-100 border border-red-200 text-red-900 text-xs font-bold shadow-2xs mb-1">
-                <span className="w-2.5 h-2.5 rounded-full bg-red-600 animate-ping" />
-                <span>24/7 Emergency Baby Health Triage &bull; Zero Login Required</span>
-              </div>
               <h2 className="text-2xl sm:text-4xl font-extrabold text-[#8A1818] tracking-tight">
                 Emergency Baby Health Question?
               </h2>
