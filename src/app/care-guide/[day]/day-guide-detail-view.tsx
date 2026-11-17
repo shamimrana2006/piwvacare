@@ -7,19 +7,15 @@ import {
   DayGuide,
   FIRST_90_DAYS_DATA,
 } from "@/data/care-guide-days";
-import { Button } from "@/components/ui/button";
 import {
-  Calendar,
   Clock,
   CheckCircle2,
   Heart,
   ArrowLeft,
   ArrowRight,
-  ShieldAlert,
   HelpCircle,
   Grid,
   Check,
-  BookOpen,
 } from "lucide-react";
 import { DoodleHeart } from "@/components/decorations";
 
@@ -177,7 +173,7 @@ export function DayGuideDetailView({ guide }: DayGuideDetailViewProps) {
           </div>
         </div>
 
-        {/* Step-by-Step Guidance: কীভাবে কী করবেন */}
+        {/* Step-by-Step Guidance */}
         <div className="bg-white rounded-3xl p-6 sm:p-10 border border-[#DEE8D8] shadow-xs mb-8 space-y-6">
           <div className="space-y-1">
             <h2 className="text-2xl font-extrabold text-[#1B381E]">
@@ -325,4 +321,3 @@ export function DayGuideDetailView({ guide }: DayGuideDetailViewProps) {
     </div>
   );
 }
-

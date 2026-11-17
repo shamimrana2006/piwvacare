@@ -2,7 +2,7 @@ import React from "react";
 import { notFound } from "next/navigation";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
-import { DayGuideDetailView } from "@/components/pages/day-guide-detail-view";
+import { DayGuideDetailView } from "./day-guide-detail-view";
 import { FIRST_90_DAYS_DATA, getDayBySlug, getDayGuide } from "@/data/care-guide-days";
 import type { Metadata } from "next";
 
