@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { Navbar } from "@/components/navbar";
 import { HeroSection } from "@/components/hero-section";
-import { ProductFeatured } from "@/components/product-featured";
+import { MainHubSection } from "@/components/main-hub-section";
 import { FeaturesGrid } from "@/components/features-grid";
 import { PromiseSection } from "@/components/promise-section";
 import { StoryShowcase } from "@/components/story-showcase";
@@ -41,10 +41,11 @@ export default function Home() {
       {/* Hero Section */}
       <HeroSection onCtaClick={() => setStayUpdatedOpen(true)} />
 
-      {/* Featured Product Section (New Launch - piwva Baby Moisture Lotion) */}
-      <ProductFeatured
-        onKnowMore={() => setProductDetailOpen(true)}
+      {/* Main Core 2 Sections: 1. Information Section + 2. Product Section (with Universal Live Search & Filters) */}
+      <MainHubSection
+        onSelectProduct={() => setProductDetailOpen(true)}
         onAddToCart={handleAddToCart}
+        onOpenStayUpdated={() => setStayUpdatedOpen(true)}
       />
 
       {/* Why Piwva? Section ("Because Your Baby Deserves the Best") */}
